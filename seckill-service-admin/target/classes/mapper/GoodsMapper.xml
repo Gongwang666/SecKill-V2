@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gw.seckill.core.admin.dao.GoodsMapper">
+    <resultMap id="goodsInfoWithImgMap" type="com.gw.seckill.facade.admin.entity.Goods">
+        <id column="ID" property="id"></id>
+        <result column="GOODS_SN" property="goodsSn"/>
+        <result column="GOODS_NAME" property="goodsName"/>
+        <result column="GOODS_IMG" property="goodsImg"/>
+        <result column="MARKET_PRICE" property="marketPrice"/>
+        <result column="SHOP_PRICE" property="shopPrice"/>
+        <result column="WARN_STOCK" property="warnStock"/>
+        <result column="GOODS_STOCK" property="goodsStock"/>
+        <result column="GOODS_TIPS" property="goodsTips"/>
+        <result column="IS_SALE" property="isSale"/>
+        <result column="IS_BEST" property="isBest"/>
+        <result column="IS_HOT" property="isHot"/>
+        <result column="IS_NEW" property="isNew"/>
+        <result column="GOODS_CAT_ID_PATH" property="goodsCatIdPath"/>
+        <result column="GOODS_CAT_ID" property="goodsCatId"/>
+        <result column="GOODS_DESC" property="goodsDesc"/>
+        <result column="SALE_NUM" property="saleNum"/>
+        <result column="SALE_TIME" property="saleTime"/>
+        <result column="DATA_FLAG" property="dataFlag"/>
+        <result column="CREATE_TIME" property="createTime"/>
+        <collection property="goodsImgList" javaType="list"
+                    ofType="com.gw.seckill.facade.admin.entity.GoodsImg"
+                    resultMap="imgResultMap">
+        </collection>
+
+    </resultMap>
+    
+    <resultMap id="imgResultMap" type="com.gw.seckill.facade.admin.entity.GoodsImg">
+        <id column="ID" property="id"></id>
+        <result column="IMG_DESC" property="imgDesc"></result>
+        <result column="IMG_URL" property="imgUrl"></result>
+        <result column="UPLOAD_DATE" property="uploadDate"></result>
+        <result column="GOODS_ID" property="goodsID"></result>
+    </resultMap>
+
+    <select id="selectGoodsWithImg" resultMap="goodsInfoWithImgMap">
+        SELECT
+          g.ID,
+          g.GOODS_NAME,
+          i.IMG_DESC,
+          i.IMG_URL,
+          i.UPLOAD_DATE
+        FROM
+          goods g
+        LEFT JOIN
+          goods_imgs i
+        ON
+          g.ID = i.GOODS_ID
+    </select>
+</mapper>

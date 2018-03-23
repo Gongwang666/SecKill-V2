@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.gw.seckill</groupId>
+    <artifactId>SecKill</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- common projects -->
+        <seckill-common.version>1.0-SNAPSHOT</seckill-common.version>
+        <seckill-common-config.version>1.0-SNAPSHOT</seckill-common-config.version>
+        <seckill-common-core.version>1.0-SNAPSHOT</seckill-common-core.version>
+        <seckill-common-web.version>1.0-SNAPSHOT</seckill-common-web.version>
+
+        <!-- facade projects -->
+        <seckill-facade-mall.version>1.0-SNAPSHOT</seckill-facade-mall.version>
+        <seckill-facade-admin.version>1.0-SNAPSHOT</seckill-facade-admin.version>
+
+        <!-- service projects -->
+        <seckill-service-mall.version>1.0-SNAPSHOT</seckill-service-mall.version>
+        <seckill-service-admin.version>1.0-SNAPSHOT</seckill-service-admin.version>
+
+        <!-- web projects -->
+        <seckill-web-boss.version>1.0-SNAPSHOT</seckill-web-boss.version>
+
+        <!-- app projects -->
+
+        <!-- timer projects -->
+
+
+        <mybatis-spring-boot>1.2.0</mybatis-spring-boot>
+
+        <mysql-connector>5.1.39</mysql-connector>
+
+        <dubbo-spring-boot>1.0.0</dubbo-spring-boot>
+
+        <druid-connection-pool>1.1.6</druid-connection-pool>
+
+        <spring-boot-starter>1.5.1.RELEASE</spring-boot-starter>
+
+        <!--<spring-web>4.3.6.RELEASE</spring-web>-->
+
+        <slf4j-api>1.7.22</slf4j-api>
+
+        <slf4j-log4j12>1.7.25</slf4j-log4j12>
+
+        <shiro-version>1.3.2</shiro-version>
+    </properties>
+
+    <!-- Spring Boot 启动父依赖 -->
+    <!--<parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.1.RELEASE</version>
+    </parent>-->
+    <modules>
+        <module>seckill-common</module>
+        <module>seckill-common-config</module>
+        <module>seckill-common-core</module>
+        <module>seckill-common-web</module>
+        <module>seckill-facade-mall</module>
+        <module>seckill-service-mall</module>
+        <module>seckill-web-boss</module>
+        <module>seckill-facade-admin</module>
+        <module>seckill-service-admin</module>
+        <module>seckill-web-admin</module>
+    </modules>
+
+    <dependencies>
+        <!-- common -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+        <!--JAVA BEAN的工具包-->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.3</version>
+        </dependency>
+    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-starter}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <!--<build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>springloaded</artifactId>
+                        <version>1.2.8.RELEASE</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <mainClass>cn.springboot.Mainspringboot</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>-->
+
+</project>

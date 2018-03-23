@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>SecKill</artifactId>
+        <groupId>com.gw.seckill</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.gw.seckill</groupId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <artifactId>seckill-common-core</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.gw.seckill</groupId>
+            <artifactId>seckill-common</artifactId>
+            <version>${seckill-common.version}</version>
+        </dependency>
+
+        <!-- Spring Boot Mybatis 依赖 -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis-spring-boot}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-commons</artifactId>
+            <version>1.13.0.RELEASE</version>
+        </dependency>
+
+        <!--tk.mybatis，定制自己的通用mapper-->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+            <version>1.1.4</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <!--${JAVA8_HOME}为maven的setting.xml中定义的-->
+                <configuration>
+                    <verbose>true</verbose>
+                    <fork>true</fork>
+                    <executable>${JAVA8_HOME}/bin/javac</executable>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
