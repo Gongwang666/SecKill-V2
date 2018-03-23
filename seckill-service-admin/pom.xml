@@ -108,6 +108,7 @@
         </dependency>
     </dependencies>
     <build>
+        <finalName>seckill-service-admin</finalName>
         <plugins>
             <!--SpringBoot Maven插件-->
             <plugin>
