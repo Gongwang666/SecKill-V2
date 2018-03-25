@@ -70,6 +70,7 @@
         <module>seckill-facade-admin</module>
         <module>seckill-service-admin</module>
         <module>seckill-web-admin</module>
+        <module>seckill-web-mall</module>
     </modules>
 
     <dependencies>
