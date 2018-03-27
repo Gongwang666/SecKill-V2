@@ -30,6 +30,12 @@
             <version>${seckill-common-web.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.gw.seckill</groupId>
+            <artifactId>seckill-facade-admin</artifactId>
+            <version>${seckill-facade-admin.version}</version>
+        </dependency>
+
         <!-- Spring Boot Web 依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -103,6 +109,7 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
     <build>
         <finalName>seckill-web-mall</finalName>
