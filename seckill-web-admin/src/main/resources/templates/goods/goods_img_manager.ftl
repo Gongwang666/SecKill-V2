@@ -16,6 +16,10 @@
                                             class="am-btn am-btn-default am-btn-success"><span
                                             class="am-icon-plus"></span> 新增
                                     </button>
+                                    <button id="set-img-btn" type="button"
+                                            class="am-btn am-btn-default am-btn-warning"><span
+                                            class="am-icon-plus"></span> 设为展示图片
+                                    </button>
                                     <button id="del-img-btn" type="button" class="am-btn am-btn-default am-btn-danger"><span
                                             class="am-icon-trash-o"></span> 删除
                                     </button>
@@ -107,6 +111,23 @@
         //返回按钮事件
         $('#back').on('click',function () {
             $('#content').load('/goods/goodsInfo/imgManage?page=1');
+        });
+
+        $('#set-img-btn').on('click',function () {
+            var ids = [];
+            $('[name=goods-img]:checkbox:checked').each(function() {
+                ids.push($(this).val())
+            });
+            if(ids.length<=0){
+                alert("请选择图片!")
+            }
+            if(ids.length>1){
+                alert("只能设置一个展示图片!")
+                return ;
+            }
+            $.post('/goods/goodsInfo/setGoodsImgPath',{id:ids[0]},function (data) {
+                alert(data.msg)
+            },'json');
         });
 
     });

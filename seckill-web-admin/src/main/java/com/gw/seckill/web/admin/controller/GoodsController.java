@@ -207,4 +207,28 @@ public class GoodsController {
         map.put("msg","出错了");
         return JSON.toJSONString(map);
     }
+    /**
+     * 类名:
+     * 参数: 
+     * 描述: 设置首要展示图片
+     * 作者: gongwang
+     * 日期: 2018/3/26
+     * 时间: 下午9:57
+     **/
+    @RequestMapping("/goods/goodsInfo/setGoodsImgPath")
+    @ResponseBody
+    public Result setGoodsImgPath(Long id){
+        Result result = new Result();
+        if(id!=null){
+            int row = goodsFacade.setGoodsImgPath(id);
+            if(row == 1){
+                result.setStatus(0);
+                result.setMsg("设置成功!");
+                return result;
+            }
+        }
+        result.setStatus(-1);
+        result.setMsg("设置失败!");
+        return result;
+    }
 }

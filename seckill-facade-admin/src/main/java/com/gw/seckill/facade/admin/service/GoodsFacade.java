@@ -30,4 +30,13 @@ public interface GoodsFacade {
     　* @创建时间: 2018/3/21 11:16
       */
     int addGoods(Goods goods);
+    /**
+     * 类名:
+     * 参数: 
+     * 描述: 设置商品首要显示图片
+     * 作者: gongwang
+     * 日期: 2018/3/26
+     * 时间: 下午10:02
+     **/
+    int setGoodsImgPath(Long id);
 }

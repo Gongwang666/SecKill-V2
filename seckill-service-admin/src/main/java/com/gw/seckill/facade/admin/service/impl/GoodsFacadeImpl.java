@@ -33,4 +33,9 @@ public class GoodsFacadeImpl implements GoodsFacade{
     public int addGoods(Goods goods) {
         return goodsBiz.addGoods(goods);
     }
+
+    @Override
+    public int setGoodsImgPath(Long id) {
+        return goodsBiz.setGoodsImgPath(id);
+    }
 }

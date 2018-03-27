@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.gw.seckill.core.admin.dao.GoodsMapper;
 import com.gw.seckill.facade.admin.entity.Goods;
+import com.gw.seckill.facade.admin.entity.GoodsImg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,8 @@ import java.util.UUID;
 public class GoodsBiz {
     @Autowired
     private GoodsMapper goodsDAO;
+    @Autowired
+    private GoodsImgBiz goodsImgBiz;
 
     public PageInfo<Goods> getAllGoodsPaged(Goods goods) {
         if (goods.getPage() != null && goods.getRows() != null) {
@@ -44,5 +47,13 @@ public class GoodsBiz {
         }
         goods.setCreateTime(new Date());
         return goodsDAO.insertSelective(goods);
+    }
+
+    public int setGoodsImgPath(Long id) {
+        GoodsImg goodsImg = goodsImgBiz.getImgById(id);
+        Goods goods = new Goods();
+        goods.setId(goodsImg.getGoodsID());
+        goods.setGoodsImg(goodsImg.getImgUrl());
+        return goodsDAO.updateByPrimaryKeySelective(goods);
     }
 }
