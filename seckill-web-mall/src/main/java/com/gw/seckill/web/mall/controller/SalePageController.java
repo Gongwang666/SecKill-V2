@@ -19,6 +19,12 @@ public class SalePageController {
         mo.setViewName("/pages/home");
         return mo;
     }
+    @RequestMapping("/introduction")
+    public ModelAndView introductionPage(){
+        ModelAndView mo = new ModelAndView();
+        mo.setViewName("/pages/introduction");
+        return mo;
+    }
     @RequestMapping("/getCatList")
     public List<GoodsCats> getCatList(){
         List<GoodsCats> list = goodsCatsFacade.getGoodsCatsTree();
