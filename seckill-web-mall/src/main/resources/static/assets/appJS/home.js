@@ -14,7 +14,23 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI'], function ($, ko) {
     };
 
     var viewModel = {
+        register:function () {
+            //注册头部导航条组件
+            ko.components.register('head-nav-bar', {
+                require: '../appJS/modules/head_nav_bar'
+            });
+            //注册搜索框组件
+            ko.components.register('search-bar', {
+                require: '../appJS/modules/search_bar'
+            });
+            //注册分类菜单组件
+            ko.components.register('category-bar', {
+                require: '../appJS/modules/category_bar'
+            });
+        },
         pageInit: function () {
+            viewModel.register();
+
             //图片轮播
             $('.am-slider').flexslider();
             viewModel.catMenuInit();
@@ -99,9 +115,8 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI'], function ($, ko) {
             }
         }
     };
-    ko.applyBindings(viewModel);
     viewModel.pageInit();
-
+    ko.applyBindings(viewModel);
 
     $(function () {
         if ($(window).width() < 640) {

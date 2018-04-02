@@ -7,14 +7,32 @@ require.config({
         "AmazeUI": ["https://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min", "amazeui.min"],
         "jquery.imagezoom":["jquery.imagezoom.min"],
         "jquery.flexslider":["jquery.flexslider"],
-        "list":["list"]
+        "list":["list"],
+        "magnifier":["amazeui.magnifier.min"]
     }
 })
 
 
 require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jquery.flexslider','list'],function ($,ko) {
+
     var viewModel = {
+        register:function () {
+            //注册头部导航条组件
+            ko.components.register('head-nav-bar', {
+                require: '../appJS/modules/head_nav_bar'
+            });
+            //注册搜索框组件
+            ko.components.register('search-bar', {
+                require: '../appJS/modules/search_bar'
+            });
+            //注册分类菜单组件
+            ko.components.register('category-bar', {
+                require: '../appJS/modules/category_bar'
+            });
+        },
         pageInit:function () {
+            //注册组件
+            viewModel.register();
             //图片轮播
             $('.flexslider').flexslider({
                 animation: "slide",
@@ -32,8 +50,10 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jque
                     $(".jqzoom").attr('rel', $(this).find("img").attr("big"));
                 });
             });
+
         }
     };
-    ko.applyBindings(viewModel);
     viewModel.pageInit();
+    ko.applyBindings(viewModel);
+
 });
