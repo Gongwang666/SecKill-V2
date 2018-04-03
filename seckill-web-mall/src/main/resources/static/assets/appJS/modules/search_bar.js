@@ -1,14 +1,19 @@
 //搜索框组件
-define(['knockout'], function(ko) {
-    function MyComponentViewModel(params) {
-
+define(['jquery','knockout','constants'], function($,ko) {
+    function SearchBarViewModel(params) {
+        //点击logo跳转到主页面
+        this.toHomePage = function () {
+            $(window).attr("location",URLS.HOME);
+        }
     }
 
+
     return {
-        viewModel: MyComponentViewModel,
-        template: '<div class="nav white">\n' +
-        '\t\t<div class="logo"><img src="../assets/images/logo.png" /></div>\n' +
-        '\t\t<div class="logoBig">\n' +
+        viewModel: SearchBarViewModel,
+        template:
+        '<div class="nav white">\n' +
+        '\t\t<div class="logo" data-bind="event:{click: toHomePage}"><img src="../assets/images/logo.png" /></div>\n' +
+        '\t\t<div class="logoBig" data-bind="event:{click: toHomePage}">\n' +
         '\t\t\t<li><img src="../assets/images/logobig.png" /></li>\n' +
         '\t\t</div>\n' +
         '\n' +

@@ -1,10 +1,10 @@
 define(['knockout'], function(ko) {
-    function MyComponentViewModel(params) {
+    function CategoryBarViewModel(params) {
 
     }
 
     return {
-        viewModel: MyComponentViewModel,
+        viewModel: CategoryBarViewModel,
         template:
         '\t\t\t<div class="long-title"><span class="all-goods">全部分类</span></div>\n' +
         '\t\t\t\t<div class="nav-cont">\n' +

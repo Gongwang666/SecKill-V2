@@ -4,11 +4,13 @@ require.config({
         "jquery": ["https://cdn.bootcss.com/jquery/3.3.1/jquery.min", "jquery.min"],
         "knockout": ["https://cdn.bootcss.com/knockout/3.4.2/knockout-min"],
         "quick_links": "quick_links",
-        "AmazeUI": ["https://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min", "amazeui.min"]
+        "AmazeUI": ["https://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min", "amazeui.min"],
+        "constants":["constants"],
+        "text":["https://cdn.bootcss.com/require-text/2.0.12/text.min"]
     }
 })
 
-require(['jquery', 'knockout', 'quick_links', 'AmazeUI'], function ($, ko) {
+require(['jquery', 'knockout', 'quick_links', 'AmazeUI','constants'], function ($, ko) {
     var URL = {
         QUERY_CAT_LIST: "/getCatList"
     };
