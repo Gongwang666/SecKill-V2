@@ -5,7 +5,9 @@ require.config({
         "knockout": ["https://cdn.bootcss.com/knockout/3.4.2/knockout-min"],
         "AmazeUI": ["https://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min", "amazeui.min"],
         "quick_links": "quick_links",
-        "script":"script"
+        "script":"script",
+        "constants":["constants"],
+        "text":["https://cdn.bootcss.com/require-text/2.0.12/text.min"]
     }
 })
 

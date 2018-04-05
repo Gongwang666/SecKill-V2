@@ -8,12 +8,14 @@ require.config({
         "jquery.imagezoom":["jquery.imagezoom.min"],
         "jquery.flexslider":["jquery.flexslider"],
         "list":["list"],
-        "magnifier":["amazeui.magnifier.min"]
+        "magnifier":["amazeui.magnifier.min"],
+        "constants":["constants"],
+        "text":["https://cdn.bootcss.com/require-text/2.0.12/text.min"]
     }
 })
 
 
-require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jquery.flexslider','list'],function ($,ko) {
+require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jquery.flexslider','list','constants'],function ($,ko) {
 
     var viewModel = {
         register:function () {

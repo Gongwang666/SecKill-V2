@@ -10,12 +10,13 @@ require.config({
     }
 })
 
-require(['jquery', 'knockout', 'quick_links', 'AmazeUI','constants'], function ($, ko) {
+define(['jquery', 'knockout', 'quick_links', 'AmazeUI','constants'], function ($, ko) {
     var URL = {
         QUERY_CAT_LIST: "/getCatList"
     };
 
     var viewModel = {
+        goodsInfo:ko.observable({title:"西瓜"}),
         register:function () {
             //注册头部导航条组件
             ko.components.register('head-nav-bar', {
@@ -29,6 +30,10 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','constants'], function (
             ko.components.register('category-bar', {
                 require: '../appJS/modules/category_bar'
             });
+            //注册分类菜单组件
+            ko.components.register('goods-list', {
+                require: '../appJS/modules/home_goods_list'
+            });
         },
         pageInit: function () {
             viewModel.register();
@@ -39,8 +44,8 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','constants'], function (
         },
         //分类菜单初始化
         catMenuInit: function () {
-
-
+            viewModel.getGoodsInfo();
+            //viewModel.goodsInfo = {title:"甜品"}
             $.post(URL.QUERY_CAT_LIST, function (data) {
                 console.log(data)
                 var cats = data[0].products;
@@ -102,6 +107,14 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','constants'], function (
                         '</li>';
             return html;
         },
+        getGoodsInfo:function () {
+            var ajaxData = {
+                title:"甜品",
+                desc:"每一道甜点都有一个故事",
+                hot:[{name:"奶皮酥",url:"aa"},{name:"aa",url:"asd"}]
+            };
+            viewModel.goodsInfo(ajaxData)
+        },
         event:{
             //显示隐藏菜单
             showOrHideCats:function () {
@@ -137,5 +150,7 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','constants'], function (
             })
         }
     })
-
+    return{
+        viewModel:viewModel
+    }
 });
