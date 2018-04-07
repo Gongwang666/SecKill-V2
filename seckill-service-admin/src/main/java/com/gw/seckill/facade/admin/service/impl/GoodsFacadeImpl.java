@@ -38,4 +38,24 @@ public class GoodsFacadeImpl implements GoodsFacade{
     public int setGoodsImgPath(Long id) {
         return goodsBiz.setGoodsImgPath(id);
     }
+
+    @Override
+    public int delGoods(Long id) {
+        return goodsBiz.delGoods(id);
+    }
+
+    @Override
+    public int enableGoods(Long id) {
+        return goodsBiz.enableGoods(id);
+    }
+
+    @Override
+    public int groundingGoods(Long id) {
+        return goodsBiz.groundingGoods(id);
+    }
+
+    @Override
+    public int pullOff(Long id) {
+        return goodsBiz.pullOff(id);
+    }
 }

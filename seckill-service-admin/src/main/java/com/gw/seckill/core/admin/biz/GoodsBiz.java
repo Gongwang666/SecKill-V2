@@ -56,4 +56,33 @@ public class GoodsBiz {
         goods.setGoodsImg(goodsImg.getImgUrl());
         return goodsDAO.updateByPrimaryKeySelective(goods);
     }
+
+    public int delGoods(Long id) {
+        Goods goods = new Goods();
+        goods.setId(id);
+        goods.setDataFlag((byte)0);
+        return goodsDAO.updateByPrimaryKeySelective(goods);
+    }
+
+    public int enableGoods(Long id) {
+        Goods goods = new Goods();
+        goods.setId(id);
+        goods.setDataFlag((byte)1);
+        return goodsDAO.updateByPrimaryKeySelective(goods);
+    }
+
+    public int groundingGoods(Long id) {
+        Goods goods = new Goods();
+        goods.setId(id);
+        goods.setSaleTime(new Date());
+        goods.setIsSale((byte)1);
+        return goodsDAO.updateByPrimaryKeySelective(goods);
+    }
+
+    public int pullOff(Long id) {
+        Goods goods = new Goods();
+        goods.setId(id);
+        goods.setIsSale((byte)0);
+        return goodsDAO.updateByPrimaryKeySelective(goods);
+    }
 }

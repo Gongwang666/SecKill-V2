@@ -39,4 +39,40 @@ public interface GoodsFacade {
      * 时间: 下午10:02
      **/
     int setGoodsImgPath(Long id);
+    /**
+     * 类名:
+     * 参数: 
+     * 描述: 删除商品
+     * 作者: gongwang
+     * 日期: 2018/4/7
+     * 时间: 下午3:29
+     **/
+    int delGoods(Long id);
+    /**
+     * 类名:
+     * 参数: 
+     * 描述: 启用商品
+     * 作者: gongwang
+     * 日期: 2018/4/7
+     * 时间: 下午3:36
+     **/
+    int enableGoods(Long id);
+    /**
+     * 类名: 
+     * 参数: 
+     * 描述: 商品上架
+     * 作者: gongwang
+     * 日期: 2018/4/7
+     * 时间: 下午4:20
+     **/
+    int groundingGoods(Long id);
+    /**
+     * 类名:
+     * 参数: 
+     * 描述: 下架商品
+     * 作者: gongwang
+     * 日期: 2018/4/7
+     * 时间: 下午4:26
+     **/
+    int pullOff(Long id);
 }

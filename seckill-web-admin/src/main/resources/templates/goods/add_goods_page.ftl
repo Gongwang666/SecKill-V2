@@ -342,7 +342,7 @@
             success:function(data,textStatus,jqXHR){
                 console.log(data)
                 //$('#add_cat_alert').show();
-                //setTimeout("$('#content').load('/resource/create')",1500);
+                setTimeout("$('#content').load('/goods/goodsInfo/create')",1500);
                 //console.log(textStatus)
                 //console.log(jqXHR)
             },

@@ -231,4 +231,82 @@ public class GoodsController {
         result.setMsg("设置失败!");
         return result;
     }
+    /**
+     * 类名:
+     * 参数: 
+     * 描述: 删除商品
+     * 作者: gongwang
+     * 日期: 2018/4/7
+     * 时间: 下午3:31
+     **/
+    @RequiresPermissions("goodsInfo:delete")
+    @RequestMapping("/goods/goodsInfo/delete")
+    @ResponseBody
+    public Result delGoods(Long id){
+        Result result = new Result();
+        if(id!=null){
+            int row = goodsFacade.delGoods(id);
+            if(row == 1){
+                result.setStatus(0);
+                result.setMsg("删除成功!");
+                return result;
+            }
+        }
+        result.setStatus(-1);
+        result.setMsg("删除失败!");
+        return result;
+    }
+    @RequiresPermissions("goodsInfo:update")
+    @RequestMapping("/goods/goodsInfo/enable.do")
+    @ResponseBody
+    public Result enableGoods(Long id){
+        Result result = new Result();
+        if(id!=null){
+            int row = goodsFacade.enableGoods(id);
+            if(row == 1){
+                result.setStatus(0);
+                result.setMsg("启用成功!");
+                return result;
+            }
+        }
+        result.setStatus(-1);
+        result.setMsg("启用失败!");
+        return result;
+    }
+
+    @RequiresPermissions("goodsInfo:update")
+    @RequestMapping("/goods/goodsInfo/grounding")
+    @ResponseBody
+    public Result groundingGoods(Long id){
+        Result result = new Result();
+        if(id!=null){
+            int row = goodsFacade.groundingGoods(id);
+            if(row == 1){
+                result.setStatus(0);
+                result.setMsg("上架成功!");
+                return result;
+            }
+        }
+        result.setStatus(-1);
+        result.setMsg("上架失败!");
+        return result;
+    }
+
+    @RequiresPermissions("goodsInfo:update")
+    @RequestMapping("/goods/goodsInfo/pullOff")
+    @ResponseBody
+    public Result pullOffGoods(Long id){
+        Result result = new Result();
+        if(id!=null){
+            int row = goodsFacade.pullOff(id);
+            if(row == 1){
+                result.setStatus(0);
+                result.setMsg("下架成功!");
+                return result;
+            }
+        }
+        result.setStatus(-1);
+        result.setMsg("下架失败!");
+        return result;
+    }
 }

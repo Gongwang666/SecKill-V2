@@ -114,7 +114,13 @@
                                                 <td>${goods.warnStock}</td>
                                                 <td>${goods.goodsStock}</td>
                                                 <td>${goods.goodsTips}</td>
-                                                <td>${goods.isSale}</td>
+                                                <td>
+                                                    <#if goods.isSale == 1>
+                                                        <a href="#" class="pullOff" data-goods-id="${goods.id}" style="color: #00e359">下架</a>
+                                                    <#else >
+                                                        <a href="#" class="grounding" data-goods-id="${goods.id}" style="color: #d7342e">上架</a>
+                                                    </#if>
+                                                </td>
                                                 <td>${goods.isBest}</td>
                                                 <td>${goods.isHot}</td>
                                                 <td>${goods.isNew}</td>
@@ -123,10 +129,10 @@
                                                 <td>${goods.goodsDesc}</td>
                                                 <td>${goods.saleNum}</td>
                                                 <td>
-                                                    <#if goods.saleTime??>
+                                                    <#if goods.isSale == 1&&goods.saleTime??>
                                                         ${goods.saleTime?string('yyyy-MM-dd')}
                                                     <#else >
-                                                        未上架
+                                                        <span>商品还未上架</span>
                                                     </#if>
 
                                                 </td>
@@ -194,92 +200,23 @@
     });
 
     $(function () {
-        $('.enable-res').on('click', function () {
-            var id = $(this).attr('data-res-id');
-            $.ajax({
-                url: '/resource/enable.do',
-                contentType: "application/json;charset=utf-8",
-                type: 'POST', //GET
-                async: false,    //或false,是否异步
-                data: id,
-                timeout: 5000,    //超时时间
-                dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                beforeSend: function (xhr) {
-                    //console.log(xhr)
-                    console.log('发送前')
-                },
-                success: function (data, textStatus, jqXHR) {
-                    console.log(data);
-                    //result = data;
-                    //$('#message-show').show();
-                    $('#content').load('/resource/view?page=${pageInfo.pageNum}');
-                    //console.log(textStatus)
-                    //console.log(jqXHR)
-                },
-                error: function (xhr, textStatus) {
-                    console.log('错误')
-                    console.log(xhr)
-                    //console.log(textStatus)
-                },
-                complete: function () {
-                    console.log('结束');
-                }
-            });
+        $('.enable-goods').on('click', function () {
+            var id = $(this).attr('data-goods-id');
+            $.post("/goods/goodsInfo/enable.do",{id:id},function (data) {
+                alert(data.msg);
+                $('#content').load('/goods/goodsInfo/view?page=${pageInfo.pageNum}');
+            },'json');
         })
     });
     //删除资源
     $(function () {
-        $('.del-res').on('click', function () {
-            var id = $(this).attr('data-res-id');
+        $('.del-goods').on('click', function () {
+            var id = $(this).attr('data-goods-id');
             //$('#message-show').alert();
-            var result = null;
-            AMUI.dialog.alert({
-                title: '删除提示',
-                content: '您确定要删除该资源？',
-                onConfirm: function () {
-                    $.ajax({
-                        url: '/resource/delete',
-                        contentType: "application/json;charset=utf-8",
-                        type: 'POST', //GET
-                        async: false,    //或false,是否异步
-                        data: id,
-                        timeout: 5000,    //超时时间
-                        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                        beforeSend: function (xhr) {
-                            //console.log(xhr)
-                            console.log('发送前')
-                        },
-                        success: function (data, textStatus, jqXHR) {
-                            console.log(data);
-                            result = data;
-                            if (data.status == 0) {
-                                $('#message-show').text(data.msg);
-                                $('#message-show').show();
-                                setTimeout("$('#content').load('/resource/view?page=${pageInfo.pageNum}')", 1500);
-                            } else if (data.status == -1) {
-                                AMUI.dialog.alert({
-                                    title: 'Message',
-                                    content: data.msg,
-                                    onConfirm: function () {
-                                        console.log("删除失败，错误提示：该资源不能被删除！");
-                                    }
-                                });
-                            }
-                            //console.log(textStatus)
-                            //console.log(jqXHR)
-                        },
-                        error: function (xhr, textStatus) {
-                            console.log('错误')
-                            console.log(xhr)
-                            //console.log(textStatus)
-                        },
-                        complete: function () {
-                            console.log('结束');
-                        }
-                    });
-                }
-            });
-
+            $.post("/goods/goodsInfo/delete",{id:id},function (data) {
+                alert(data.msg);
+                $('#content').load('/goods/goodsInfo/view?page=${pageInfo.pageNum}');
+            },'json');
 
         })
     });
@@ -301,6 +238,25 @@
     $(function () {
         $('#doSave').on('click',function () {
 
+        });
+    });
+
+    $(function () {
+        //上架商品
+        $('.grounding').on('click',function () {
+            var id = $(this).attr('data-goods-id');
+            $.post('/goods/goodsInfo/grounding',{id:id},function (data) {
+                alert(data.msg);
+                $('#content').load('/goods/goodsInfo/view?page=${pageInfo.pageNum}');
+            },'json');
+        });
+        //下架商品
+        $('.pullOff').on('click',function () {
+            var id = $(this).attr('data-goods-id');
+            $.post('/goods/goodsInfo/pullOff',{id:id},function (data) {
+                alert(data.msg);
+                $('#content').load('/goods/goodsInfo/view?page=${pageInfo.pageNum}');
+            },'json');
         });
     });
 </script>
