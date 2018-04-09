@@ -111,7 +111,9 @@ define(['jquery', 'knockout', 'quick_links', 'AmazeUI','constants'], function ($
             var ajaxData = {
                 title:"甜品",
                 desc:"每一道甜点都有一个故事",
-                hot:[{name:"奶皮酥",url:"aa"},{name:"aa",url:"asd"}]
+                hot:[{name:"奶皮酥",url:"aa"},{name:"aa",url:"asd"}],
+                newGoods:[{name:"奶皮酥",url:"aa"},{name:"aa",url:"asd"}],
+                goods:[]
             };
             viewModel.goodsInfo(ajaxData)
         },

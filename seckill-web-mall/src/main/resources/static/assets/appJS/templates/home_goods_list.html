@@ -13,20 +13,19 @@
                 <a href="# ">豌豆黄</a>-->
             </div>
             <span class="more ">
-                    <a href="# ">更多美味<i class="am-icon-angle-right" style="padding-left:10px ;"></i></a>
-                        </span>
+                <a href="# ">更多美味<i class="am-icon-angle-right" style="padding-left:10px ;"></i></a>
+            </span>
         </div>
     </div>
 
     <div class="am-g am-g-fixed floodFour">
         <div class="am-u-sm-5 am-u-md-4 text-one list ">
-            <div class="word">
-                <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
+            <div class="word" data-bind="foreach:newGoods">
+                <a class="outer" href="#" data-bind="attr:{href:$data.url}">
+                    <span class="inner">
+                        <b class="text" data-bind="text:name"></b>
+                    </span>
+                </a>
             </div>
             <a href="# ">
                 <div class="outer-con ">
@@ -44,81 +43,69 @@
 
         <div class="am-u-sm-7 am-u-md-4 text-two sug">
             <div class="outer-con ">
-                <div class="title ">
-                    雪之恋和风大福
+                <div class="title " data-bind="text:getGoodsInfoByIndex(0,1)">
                 </div>
-                <div class="sub-title ">
-                    ¥13.8
+                <div class="sub-title " data-bind="text:getGoodsInfoByIndex(0,2)">
                 </div>
                 <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
             </div>
-            <a href="# "><img src="../assets/images/2.jpg"/></a>
+            <a href="# " data-bind="attr:{href:getGoodsInfoByIndex(0,3)}"><img data-bind="attr:{src:getGoodsInfoByIndex(0,4)}"/></a>
         </div>
 
         <div class="am-u-sm-7 am-u-md-4 text-two">
             <div class="outer-con ">
-                <div class="title ">
-                    雪之恋和风大福
+                <div class="title " data-bind="text:getGoodsInfoByIndex(1,1)">
                 </div>
-                <div class="sub-title ">
-                    ¥13.8
+                <div class="sub-title " data-bind="text:getGoodsInfoByIndex(1,2)">
                 </div>
                 <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
             </div>
-            <a href="# "><img src="../assets/images/1.jpg"/></a>
+            <a href="# " data-bind="attr:{href:getGoodsInfoByIndex(1,3)}"><img data-bind="attr:{src:getGoodsInfoByIndex(1,4)}"/></a>
         </div>
 
 
         <div class="am-u-sm-3 am-u-md-2 text-three big">
             <div class="outer-con ">
-                <div class="title ">
-                    小优布丁
+                <div class="title " data-bind="text:getGoodsInfoByIndex(2,1)">
                 </div>
-                <div class="sub-title ">
-                    ¥4.8
+                <div class="sub-title " data-bind="text:getGoodsInfoByIndex(2,2)">
                 </div>
                 <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
             </div>
-            <a href="# "><img src="../assets/images/5.jpg"/></a>
+            <a href="# " data-bind="attr:{href:getGoodsInfoByIndex(2,3)}"><img data-bind="attr:{src:getGoodsInfoByIndex(2,4)}"/></a>
         </div>
 
         <div class="am-u-sm-3 am-u-md-2 text-three sug">
             <div class="outer-con ">
-                <div class="title ">
-                    小优布丁
+                <div class="title " data-bind="text:getGoodsInfoByIndex(3,1)">
                 </div>
-                <div class="sub-title ">
-                    ¥4.8
+                <div class="sub-title " data-bind="text:getGoodsInfoByIndex(3,2)">
                 </div>
                 <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
             </div>
-            <a href="# "><img src="../assets/images/3.jpg"/></a>
+            <a href="# " data-bind="attr:{href:getGoodsInfoByIndex(3,3)}"><img data-bind="attr:{src:getGoodsInfoByIndex(3,4)}"/></a>
         </div>
 
         <div class="am-u-sm-3 am-u-md-2 text-three ">
             <div class="outer-con ">
-                <div class="title ">
-                    小优布丁
+                <div class="title " data-bind="text:getGoodsInfoByIndex(4,1)">
                 </div>
-                <div class="sub-title ">
-                    ¥4.8
+                <div class="sub-title " data-bind="text:getGoodsInfoByIndex(4,2)">
                 </div>
                 <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
             </div>
-            <a href="# "><img src="../assets/images/4.jpg"/></a>
+            <a href="# " data-bind="attr:{href:getGoodsInfoByIndex(4,3)}"><img data-bind="attr:{src:getGoodsInfoByIndex(4,4)}"/></a>
         </div>
 
         <div class="am-u-sm-3 am-u-md-2 text-three last big ">
             <div class="outer-con ">
-                <div class="title ">
-                    小优布丁
+                <div class="title " data-bind="text:getGoodsInfoByIndex(5,1)">
                 </div>
-                <div class="sub-title ">
-                    ¥4.8
+                <div class="sub-title " data-bind="text:getGoodsInfoByIndex(5,2)">
                 </div>
                 <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
             </div>
-            <a href="# "><img src="../assets/images/5.jpg"/></a>
+            <a href="# " data-bind="attr:{href:getGoodsInfoByIndex(5,3)}"><img data-bind="attr:{src:getGoodsInfoByIndex(5,4)}"/></a>
         </div>
 
     </div>
