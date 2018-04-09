@@ -34,6 +34,12 @@
             <version>${seckill-facade-mall.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.gw.seckill</groupId>
+            <artifactId>seckill-service-admin</artifactId>
+            <version>${seckill-service-admin.version}</version>
+        </dependency>
+
         <!-- Spring Boot Dubbo 依赖 -->
         <dependency>
             <groupId>io.dubbo.springboot</groupId>
@@ -41,11 +47,6 @@
             <version>${dubbo-spring-boot}</version>
         </dependency>
 
-        <!-- Spring Boot Web 依赖 -->
-       <!-- <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>-->
 
         <!-- Spring Boot Test 依赖 -->
         <dependency>
@@ -55,26 +56,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Spring Boot Mybatis 依赖 -->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>${mybatis-spring-boot}</version>
-        </dependency>
-
-        <!-- MySQL 连接驱动依赖 -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql-connector}</version>
-        </dependency>
-
-       <!--Druid数据库连接池-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>${druid-connection-pool}</version>
-        </dependency>
 
         <!-- Junit -->
         <dependency>
@@ -94,7 +75,7 @@
                 <version>1.5.1.RELEASE</version>
                 <configuration>
                     <!--打Jar包设置:  SpringBoot入口类-->
-                    <mainClass></mainClass>
+                    <mainClass>com.gw.seckill.MallApplication</mainClass>
                     <!--热加载设置参数-->
                     <jvmArguments>
                         -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005

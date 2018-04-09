@@ -11,6 +11,20 @@
 
     <artifactId>seckill-facade-mall</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.gw.seckill</groupId>
+            <artifactId>seckill-facade-admin</artifactId>
+            <version>${seckill-facade-admin.version}</version>
+        </dependency>
+        <!--mybatis分页插件-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.1.1</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <finalName>seckill-facade-mall</finalName>
         <plugins>
