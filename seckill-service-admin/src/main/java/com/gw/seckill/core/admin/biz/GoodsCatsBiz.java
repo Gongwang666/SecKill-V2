@@ -188,5 +188,17 @@ public class GoodsCatsBiz {
             return id+"/"+getPath(cat.getParentId());
         }
     }
-
+    /**
+    　* @描述:     通过名称查询分类信息
+    　* @参数描述: 
+    　* @返回值:
+    　* @异常:     
+    　* @作者:     gongwang
+    　* @创建时间: 2018/4/10 16:25
+      */
+    public GoodsCats getCatsByName(String name) {
+        GoodsCats goodsCats = new GoodsCats();
+        goodsCats.setCatName(name);
+        return goodsCatsDAO.selectOne(goodsCats);
+    }
 }

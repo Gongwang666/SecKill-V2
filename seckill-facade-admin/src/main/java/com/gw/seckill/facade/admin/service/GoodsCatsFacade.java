@@ -99,4 +99,14 @@ public interface GoodsCatsFacade {
     List<GoodsCats> getChildList(GoodsCats goodsCats);
 
     String getCatIdPath(Long id);
+
+    /**
+    　* @描述:     通过分类名称获取分类信息
+    　* @参数描述: 
+    　* @返回值:
+    　* @异常:     
+    　* @作者:     gongwang
+    　* @创建时间: 2018/4/10 16:22
+      */
+    GoodsCats getCatsByName(String name);
 }

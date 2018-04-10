@@ -108,14 +108,9 @@ define(['jquery', 'knockout', 'quick_links', 'AmazeUI','constants'], function ($
             return html;
         },
         getGoodsInfo:function () {
-            var ajaxData = {
-                title:"甜品",
-                desc:"每一道甜点都有一个故事",
-                hot:[{name:"奶皮酥",url:"aa"},{name:"aa",url:"asd"}],
-                newGoods:[{name:"奶皮酥",url:"aa"},{name:"aa",url:"asd"}],
-                goods:[]
-            };
-            viewModel.goodsInfo(ajaxData)
+            $.post('/home/getHomePageGoodsList',function (result) {
+                viewModel.goodsInfo(result);
+            },'json');
         },
         event:{
             //显示隐藏菜单

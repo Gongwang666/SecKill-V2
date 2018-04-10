@@ -11,7 +11,7 @@ require.config({
     }
 })
 
-require(['jquery', 'knockout', 'quick_links', 'AmazeUI',"script"],function ($,ko) {
+require(['jquery', 'knockout', 'quick_links', 'AmazeUI',"script",'constants'],function ($,ko) {
     var viewModel = {
         register:function () {
             //注册头部导航条组件

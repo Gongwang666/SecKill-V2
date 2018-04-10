@@ -5,7 +5,7 @@
             <h4 data-bind="text:title"></h4>
             <h3 data-bind="text:desc"></h3>
             <div class="today-brands " data-bind="foreach:hot">
-                <a href="" data-bind="attr:{href:$data.url},text:name"></a>
+                <a href="" data-bind="attr:{href:$parent.getDetailUrl($data.id)},text:goodsName"></a>
                 <!--<a href="# ">奶皮酥</a>
                 <a href="# ">栗子糕 </a>
                 <a href="# ">马卡龙</a>
@@ -21,9 +21,9 @@
     <div class="am-g am-g-fixed floodFour">
         <div class="am-u-sm-5 am-u-md-4 text-one list ">
             <div class="word" data-bind="foreach:newGoods">
-                <a class="outer" href="#" data-bind="attr:{href:$data.url}">
+                <a class="outer" href="#" data-bind="attr:{href:$parent.getDetailUrl($data.id)}">
                     <span class="inner">
-                        <b class="text" data-bind="text:name"></b>
+                        <b class="text" data-bind="text:goodsName"></b>
                     </span>
                 </a>
             </div>
