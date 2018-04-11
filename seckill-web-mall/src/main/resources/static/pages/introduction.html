@@ -65,7 +65,7 @@
 
 						<div class="box">
 							<div class="tb-booth tb-pic tb-s310">
-								<a href="../assets/images/01.jpg"><img src="../assets/images/01_mid.jpg" alt="细节展示放大镜特效" rel="../assets/images/01.jpg" class="jqzoom" /></a>
+								<a href="../assets/images/01.jpg"><img data-bind="attr:{src:goodsImg}" alt="细节展示放大镜特效" rel="../assets/images/01.jpg" class="jqzoom" /></a>
 							</div>
 							<ul class="tb-thumb" id="thumblist">
 								<li class="tb-selected">
@@ -94,20 +94,19 @@
 						<!--规格属性-->
 						<!--名称-->
 						<div class="tb-detail-hd">
-							<h1>	
-				 良品铺子 手剥松子218g 坚果炒货 巴西松子
-	          </h1>
+							<h1 data-bind="text:goodsName">
+	          				</h1>
 						</div>
 						<div class="tb-detail-list">
 							<!--价格-->
 							<div class="tb-detail-price">
 								<li class="price iteminfo_price">
 									<dt>促销价</dt>
-									<dd><em>¥</em><b class="sys_item_price">56.90</b>  </dd>                                 
+									<dd><em>¥</em><b class="sys_item_price" data-bind="text:shopPrice"></b>  </dd>
 								</li>
 								<li class="price iteminfo_mktprice">
 									<dt>原价</dt>
-									<dd><em>¥</em><b class="sys_item_mktprice">98.00</b></dd>									
+									<dd><em>¥</em><b class="sys_item_mktprice" data-bind="text:marketPrice"></b></dd>
 								</li>
 								<div class="clear"></div>
 							</div>
@@ -225,7 +224,10 @@
 								<div class="hot">
 									<dt class="tb-metatit">店铺优惠</dt>
 									<div class="gold-list">
-										<p>购物满2件打8折，满3件7折<span>点击领券<i class="am-icon-sort-down"></i></span></p>
+										<p data-bind="text:goodsTips">
+											<!--<span>点击领券<i class="am-icon-sort-down"></i>
+											</span>-->
+										</p>
 									</div>
 								</div>
 								<div class="clear"></div>

@@ -19,4 +19,9 @@ public class QueryGoodsInfoFacadeImpl implements QueryGoodsInfoFacade {
     public DTOGoodsInfo getHomePageGoodsList() {
         return queryGoodsInfoBiz.getHomePageGoodsList();
     }
+
+    @Override
+    public Goods getGoodsInfoById(Long id) {
+        return queryGoodsInfoBiz.getGoodsInfoById(id);
+    }
 }

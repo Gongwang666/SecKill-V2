@@ -18,6 +18,11 @@ require.config({
 require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jquery.flexslider','list','constants'],function ($,ko) {
 
     var viewModel = {
+        goodsName:ko.observable(''),
+        goodsTips:ko.observable(''),
+        shopPrice:ko.observable(''),
+        marketPrice:ko.observable(''),
+        goodsImg:ko.observable(''),
         register:function () {
             //注册头部导航条组件
             ko.components.register('head-nav-bar', {
@@ -35,6 +40,8 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jque
         pageInit:function () {
             //注册组件
             viewModel.register();
+            //查询商品信息
+            viewModel.queryGoodsInfo();
             //图片轮播
             $('.flexslider').flexslider({
                 animation: "slide",
@@ -53,6 +60,17 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jque
                 });
             });
 
+        },
+        queryGoodsInfo:function () {
+            var urlStr = window.location.search;
+            var id = urlStr.substring(urlStr.indexOf('=')+1);
+            $.post('/introduction/getGoodsInfo',{id:id},function (result) {
+                viewModel.goodsName(result.goodsName);
+                viewModel.goodsTips(result.goodsTips);
+                viewModel.marketPrice(result.marketPrice);
+                viewModel.shopPrice(result.shopPrice);
+                viewModel.goodsImg(result.goodsImg);
+            },'json');
         }
     };
     viewModel.pageInit();

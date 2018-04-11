@@ -48,4 +48,8 @@ public class QueryGoodsInfoBiz {
         infoList.setGoodsInfo(goodsInfo);
         return infoList;
     }
+
+    public Goods getGoodsInfoById(Long id) {
+        return goodsDAO.selectByPrimaryKey(id);
+    }
 }

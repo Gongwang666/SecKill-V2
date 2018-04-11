@@ -31,18 +31,8 @@ public class SalePageController {
     public DTOGoodsInfo getHomePageGoodsList(){
         return queryGoodsInfoFacade.getHomePageGoodsList();
     }
-    @RequestMapping("/introduction")
-    public ModelAndView introductionPage(){
-        ModelAndView mo = new ModelAndView();
-        mo.setViewName("/pages/introduction");
-        return mo;
-    }
-    @RequestMapping("/goodsList")
-    public ModelAndView goodsListPage(){
-        ModelAndView mo = new ModelAndView();
-        mo.setViewName("/pages/search");
-        return mo;
-    }
+
+
     @RequestMapping("/getCatList")
     public List<GoodsCats> getCatList(){
         List<GoodsCats> list = goodsCatsFacade.getGoodsCatsTree();
