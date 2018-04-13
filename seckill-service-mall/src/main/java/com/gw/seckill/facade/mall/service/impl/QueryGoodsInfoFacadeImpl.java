@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageInfo;
 import com.gw.seckill.facade.admin.entity.Goods;
 import com.gw.seckill.facade.mall.dto.DTOGoodsInfo;
+import com.gw.seckill.facade.mall.dto.DTOSpecInfo;
 import com.gw.seckill.facade.mall.service.QueryGoodsInfoFacade;
 import com.gw.seckill.service.mall.biz.QueryGoodsInfoBiz;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,10 @@ public class QueryGoodsInfoFacadeImpl implements QueryGoodsInfoFacade {
     @Override
     public Goods getGoodsInfoById(Long id) {
         return queryGoodsInfoBiz.getGoodsInfoById(id);
+    }
+
+    @Override
+    public DTOSpecInfo getSpecInfoByGoodsId(Long goodsId) {
+        return queryGoodsInfoBiz.getSpecInfoByGoodsId(goodsId);
     }
 }

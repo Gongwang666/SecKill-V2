@@ -2,9 +2,14 @@ package com.gw.seckill.service.mall.biz;
 
 import com.gw.seckill.core.admin.biz.GoodsCatsBiz;
 import com.gw.seckill.core.admin.dao.GoodsMapper;
+import com.gw.seckill.core.admin.dao.GoodsSpecItemMapper;
+import com.gw.seckill.core.admin.dao.GoodsSpecMapper;
 import com.gw.seckill.facade.admin.entity.Goods;
 import com.gw.seckill.facade.admin.entity.GoodsCats;
+import com.gw.seckill.facade.admin.entity.GoodsSpecification;
+import com.gw.seckill.facade.admin.entity.GoodsSpecificationItem;
 import com.gw.seckill.facade.mall.dto.DTOGoodsInfo;
+import com.gw.seckill.facade.mall.dto.DTOSpecInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -18,6 +23,10 @@ public class QueryGoodsInfoBiz {
     private GoodsMapper goodsDAO;
     @Autowired
     private GoodsCatsBiz goodsCatsBiz;
+    @Autowired
+    private GoodsSpecMapper goodsSpecMapper;
+    @Autowired
+    private GoodsSpecItemMapper goodsSpecItemMapper;
 
     public DTOGoodsInfo getHomePageGoodsList() {
         DTOGoodsInfo infoList = new DTOGoodsInfo();
@@ -51,5 +60,24 @@ public class QueryGoodsInfoBiz {
 
     public Goods getGoodsInfoById(Long id) {
         return goodsDAO.selectByPrimaryKey(id);
+    }
+
+    public DTOSpecInfo getSpecInfoByGoodsId(Long goodsId) {
+        DTOSpecInfo specInfo = new DTOSpecInfo();
+        specInfo.setGoodsId(goodsId);
+        GoodsSpecification spec = new GoodsSpecification();
+        spec.setGoodsId(goodsId);
+        List<GoodsSpecification> specList = goodsSpecMapper.select(spec);
+        if(specList!=null&&specList.size()>0){
+            for(GoodsSpecification spc:specList){
+                specInfo.setSpecId(spc.getId());
+                specInfo.setSpecName(spc.getSpecName());
+                GoodsSpecificationItem spcItem = new GoodsSpecificationItem();
+                spcItem.setSpecId(spc.getId());
+                List<GoodsSpecificationItem> itemList =goodsSpecItemMapper.select(spcItem);
+                specInfo.setSpecItems(itemList);
+            }
+        }
+        return specInfo;
     }
 }

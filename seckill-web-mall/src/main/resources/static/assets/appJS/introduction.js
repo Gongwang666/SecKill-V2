@@ -18,11 +18,23 @@ require.config({
 require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jquery.flexslider','list','constants'],function ($,ko) {
 
     var viewModel = {
+        selectIndex:1,
+        goodsId:ko.observable(''),
         goodsName:ko.observable(''),
         goodsTips:ko.observable(''),
         shopPrice:ko.observable(''),
         marketPrice:ko.observable(''),
         goodsImg:ko.observable(''),
+        goodsSpecName:ko.observable(''),
+        specItems:ko.observableArray(),
+        render:{
+            isSelect:function (element, index, data) {
+                if(viewModel.selectIndex == 1){
+                    $(element).addClass('selected');
+                    viewModel.selectIndex++;
+                }
+            }
+        },
         register:function () {
             //注册头部导航条组件
             ko.components.register('head-nav-bar', {
@@ -40,8 +52,12 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jque
         pageInit:function () {
             //注册组件
             viewModel.register();
+            var urlStr = window.location.search;
+            viewModel.goodsId(urlStr.substring(urlStr.indexOf('=')+1));
             //查询商品信息
             viewModel.queryGoodsInfo();
+            //查询规格信息
+            viewModel.querySpecInfo();
             //图片轮播
             $('.flexslider').flexslider({
                 animation: "slide",
@@ -62,14 +78,20 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jque
 
         },
         queryGoodsInfo:function () {
-            var urlStr = window.location.search;
-            var id = urlStr.substring(urlStr.indexOf('=')+1);
+            var id = viewModel.goodsId();
             $.post('/introduction/getGoodsInfo',{id:id},function (result) {
                 viewModel.goodsName(result.goodsName);
                 viewModel.goodsTips(result.goodsTips);
                 viewModel.marketPrice(result.marketPrice);
                 viewModel.shopPrice(result.shopPrice);
                 viewModel.goodsImg(result.goodsImg);
+            },'json');
+        },
+        querySpecInfo:function () {
+            var id = viewModel.goodsId();
+            $.post('/introduction/getSpecInfo',{id:id},function (result) {
+                viewModel.goodsSpecName(result.specName);
+                viewModel.specItems(result.specItems);
             },'json');
         }
     };

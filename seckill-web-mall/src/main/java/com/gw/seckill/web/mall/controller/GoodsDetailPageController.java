@@ -2,6 +2,7 @@ package com.gw.seckill.web.mall.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.gw.seckill.facade.admin.entity.Goods;
+import com.gw.seckill.facade.mall.dto.DTOSpecInfo;
 import com.gw.seckill.facade.mall.service.QueryGoodsInfoFacade;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,5 +27,17 @@ public class GoodsDetailPageController {
     @RequestMapping("/introduction/getGoodsInfo")
     public Goods getGoodsInfo(Long id){
         return queryGoodsInfoFacade.getGoodsInfoById(id);
+    }
+    /**
+    　* @描述:     获取商品规格信息
+    　* @参数描述: 
+    　* @返回值:
+    　* @异常:     
+    　* @作者:     gongwang
+    　* @创建时间: 2018/4/13 16:23
+      */
+    @RequestMapping("/introduction/getSpecInfo")
+    public DTOSpecInfo getSpecInfo(Long id){
+        return queryGoodsInfoFacade.getSpecInfoByGoodsId(id);
     }
 }

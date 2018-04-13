@@ -169,12 +169,13 @@
 												<div class="theme-signin-left">
 
 													<div class="theme-options">
-														<div class="cart-title">口味</div>
-														<ul>
-															<li class="sku-line selected">原味<i></i></li>
+														<div class="cart-title" data-bind="text:goodsSpecName"></div>
+														<ul data-bind="foreach:{data:specItems,afterRender:render.isSelect}">
+															<li class="sku-line" data-bind="text:specItemName"><i></i></li>
+															<!--<li class="sku-line selected">原味<i></i></li>
 															<li class="sku-line">奶油<i></i></li>
 															<li class="sku-line">炭烧<i></i></li>
-															<li class="sku-line">咸香<i></i></li>
+															<li class="sku-line">咸香<i></i></li>-->
 														</ul>
 													</div>
 													<div class="theme-options">
@@ -269,7 +270,7 @@
 				</div>
 
 				<!--优惠套装-->
-				<div class="match">
+				<!--<div class="match">
 					<div class="match-title">优惠套装</div>
 					<div class="match-comment">
 						<ul class="like_list">
@@ -293,7 +294,7 @@
 							<li class="plus_icon"><i class="am-icon-angle-right"></i></li>
 						</ul>
 					</div>
-				</div>
+				</div>-->
 				<div class="clear"></div>
 				
 							
