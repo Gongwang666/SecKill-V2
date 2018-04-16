@@ -27,6 +27,7 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jque
         goodsImg:ko.observable(''),
         goodsSpecName:ko.observable(''),
         specItems:ko.observableArray(),
+        goodsDetailImgs:ko.observableArray(),
         render:{
             isSelect:function (element, index, data) {
                 if(viewModel.selectIndex == 1){
@@ -58,6 +59,8 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jque
             viewModel.queryGoodsInfo();
             //查询规格信息
             viewModel.querySpecInfo();
+            //查询商品详情图片
+            viewModel.queryDetailImgs();
             //图片轮播
             $('.flexslider').flexslider({
                 animation: "slide",
@@ -67,14 +70,14 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jque
             });
 
             //初始化图片放大镜
-            $(document).ready(function() {
+           /* $(document).ready(function() {
                 $(".jqzoom").imagezoom();
                 $("#thumblist li a").click(function() {
                     $(this).parents("li").addClass("tb-selected").siblings().removeClass("tb-selected");
                     $(".jqzoom").attr('src', $(this).find("img").attr("mid"));
                     $(".jqzoom").attr('rel', $(this).find("img").attr("big"));
                 });
-            });
+            });*/
 
         },
         queryGoodsInfo:function () {
@@ -92,6 +95,12 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jque
             $.post('/introduction/getSpecInfo',{id:id},function (result) {
                 viewModel.goodsSpecName(result.specName);
                 viewModel.specItems(result.specItems);
+            },'json');
+        },
+        queryDetailImgs:function () {
+            var id = viewModel.goodsId();
+            $.post('/introduction/getDetailImgs',{id:id},function (result) {
+                viewModel.goodsDetailImgs(result);
             },'json');
         }
     };

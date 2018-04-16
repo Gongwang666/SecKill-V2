@@ -3,6 +3,7 @@ package com.gw.seckill.facade.mall.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageInfo;
 import com.gw.seckill.facade.admin.entity.Goods;
+import com.gw.seckill.facade.admin.entity.GoodsImg;
 import com.gw.seckill.facade.mall.dto.DTOGoodsInfo;
 import com.gw.seckill.facade.mall.dto.DTOSpecInfo;
 import com.gw.seckill.facade.mall.service.QueryGoodsInfoFacade;
@@ -29,5 +30,10 @@ public class QueryGoodsInfoFacadeImpl implements QueryGoodsInfoFacade {
     @Override
     public DTOSpecInfo getSpecInfoByGoodsId(Long goodsId) {
         return queryGoodsInfoBiz.getSpecInfoByGoodsId(goodsId);
+    }
+
+    @Override
+    public List<GoodsImg> queryGoodsDetailImgs(Long goodsId) {
+        return queryGoodsInfoBiz.queryGoodsDetailImgs(goodsId);
     }
 }

@@ -2,6 +2,7 @@ package com.gw.seckill.facade.mall.service;
 
 
 import com.gw.seckill.facade.admin.entity.Goods;
+import com.gw.seckill.facade.admin.entity.GoodsImg;
 import com.gw.seckill.facade.mall.dto.DTOGoodsInfo;
 import com.gw.seckill.facade.mall.dto.DTOSpecInfo;
 
@@ -43,4 +44,13 @@ public interface QueryGoodsInfoFacade {
       */
 
     DTOSpecInfo getSpecInfoByGoodsId(Long goodsId);
+    /**
+    　* @描述:     获取商品详情图片
+    　* @参数描述: 
+    　* @返回值:
+    　* @异常:     
+    　* @作者:     gongwang
+    　* @创建时间: 2018/4/16 18:33
+      */
+    List<GoodsImg> queryGoodsDetailImgs(Long goodsId);
 }

@@ -25,6 +25,8 @@ public class GoodsImg extends BaseEntity implements Serializable {
     private Date uploadDate;
     @Column(name = "GOODS_ID")
     private Long goodsID;
+    @Column(name = "TYPE")
+    private Integer type;
 
     public Long getGoodsID() {
         return goodsID;
@@ -56,5 +58,13 @@ public class GoodsImg extends BaseEntity implements Serializable {
 
     public void setUploadDate(Date uploadDate) {
         this.uploadDate = uploadDate;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

@@ -2,6 +2,7 @@ package com.gw.seckill.core.admin.biz;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.gw.seckill.core.admin.dao.GoodsImgMapper;
 import com.gw.seckill.core.admin.dao.GoodsMapper;
 import com.gw.seckill.facade.admin.entity.Goods;
 import com.gw.seckill.facade.admin.entity.GoodsImg;
@@ -25,6 +26,8 @@ public class GoodsBiz {
     private GoodsMapper goodsDAO;
     @Autowired
     private GoodsImgBiz goodsImgBiz;
+    @Autowired
+    private GoodsImgMapper goodsImgMapper;
 
     public PageInfo<Goods> getAllGoodsPaged(Goods goods) {
         if (goods.getPage() != null && goods.getRows() != null) {
@@ -51,6 +54,8 @@ public class GoodsBiz {
 
     public int setGoodsImgPath(Long id) {
         GoodsImg goodsImg = goodsImgBiz.getImgById(id);
+        goodsImg.setType(0);
+        goodsImgMapper.updateByPrimaryKeySelective(goodsImg);
         Goods goods = new Goods();
         goods.setId(goodsImg.getGoodsID());
         goods.setGoodsImg(goodsImg.getImgUrl());

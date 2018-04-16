@@ -65,9 +65,9 @@
 
 						<div class="box">
 							<div class="tb-booth tb-pic tb-s310">
-								<a href="../assets/images/01.jpg"><img data-bind="attr:{src:goodsImg}" alt="细节展示放大镜特效" rel="../assets/images/01.jpg" class="jqzoom" /></a>
+								<a data-bind="attr:{href:goodsImg}"><img data-bind="attr:{src:goodsImg}" alt="细节展示放大镜特效"  class="jqzoom" /></a>
 							</div>
-							<ul class="tb-thumb" id="thumblist">
+							<!--<ul class="tb-thumb" id="thumblist">
 								<li class="tb-selected">
 									<div class="tb-pic tb-s40">
 										<a href="#"><img src="../assets/images/01_small.jpg" mid="../assets/images/01_mid.jpg" big="../assets/images/01.jpg"></a>
@@ -83,7 +83,7 @@
 										<a href="#"><img src="../assets/images/03_small.jpg" mid="../assets/images/03_mid.jpg" big="../assets/images/03.jpg"></a>
 									</div>
 								</li>
-							</ul>
+							</ul>-->
 						</div>
 
 						<div class="clear"></div>
@@ -178,14 +178,14 @@
 															<li class="sku-line">咸香<i></i></li>-->
 														</ul>
 													</div>
-													<div class="theme-options">
+													<!--<div class="theme-options">
 														<div class="cart-title">包装</div>
 														<ul>
 															<li class="sku-line selected">手袋单人份<i></i></li>
 															<li class="sku-line">礼盒双人份<i></i></li>
 															<li class="sku-line">全家福礼包<i></i></li>
 														</ul>
-													</div>
+													</div>-->
 													<div class="theme-options">
 														<div class="cart-title number">数量</div>
 														<!--<dd>-->
@@ -389,7 +389,7 @@
 							<div class="am-tabs-bd">
 
 								<div class="am-tab-panel am-fade am-in am-active">
-									<div class="J_Brand">
+									<!--<div class="J_Brand">
 
 										<div class="attr-list-hd tm-clear">
 											<h4>产品参数：</h4></div>
@@ -407,20 +407,14 @@
 											<li title="">食用方法：&nbsp;开袋去壳即食</li>
 										</ul>
 										<div class="clear"></div>
-									</div>
+									</div>-->
 
 									<div class="details">
 										<div class="attr-list-hd after-market-hd">
 											<h4>商品细节</h4>
 										</div>
-										<div class="twlistNews">
-											<img src="../assets/images/tw1.jpg" />
-											<img src="../assets/images/tw2.jpg" />
-											<img src="../assets/images/tw3.jpg" />
-											<img src="../assets/images/tw4.jpg" />
-											<img src="../assets/images/tw5.jpg" />
-											<img src="../assets/images/tw6.jpg" />
-											<img src="../assets/images/tw7.jpg" />
+										<div class="twlistNews" data-bind="foreach:goodsDetailImgs">
+											<img data-bind="attr:{src:imgUrl}" />
 										</div>
 									</div>
 									<div class="clear"></div>

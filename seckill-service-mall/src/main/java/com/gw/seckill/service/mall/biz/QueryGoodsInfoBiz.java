@@ -1,13 +1,12 @@
 package com.gw.seckill.service.mall.biz;
 
 import com.gw.seckill.core.admin.biz.GoodsCatsBiz;
+import com.gw.seckill.core.admin.dao.GoodsImgMapper;
 import com.gw.seckill.core.admin.dao.GoodsMapper;
 import com.gw.seckill.core.admin.dao.GoodsSpecItemMapper;
 import com.gw.seckill.core.admin.dao.GoodsSpecMapper;
-import com.gw.seckill.facade.admin.entity.Goods;
-import com.gw.seckill.facade.admin.entity.GoodsCats;
-import com.gw.seckill.facade.admin.entity.GoodsSpecification;
-import com.gw.seckill.facade.admin.entity.GoodsSpecificationItem;
+import com.gw.seckill.facade.admin.entity.*;
+import com.gw.seckill.facade.admin.service.GoodsImgFacade;
 import com.gw.seckill.facade.mall.dto.DTOGoodsInfo;
 import com.gw.seckill.facade.mall.dto.DTOSpecInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +26,8 @@ public class QueryGoodsInfoBiz {
     private GoodsSpecMapper goodsSpecMapper;
     @Autowired
     private GoodsSpecItemMapper goodsSpecItemMapper;
+    @Autowired
+    private GoodsImgMapper goodsImgMapper;
 
     public DTOGoodsInfo getHomePageGoodsList() {
         DTOGoodsInfo infoList = new DTOGoodsInfo();
@@ -79,5 +80,12 @@ public class QueryGoodsInfoBiz {
             }
         }
         return specInfo;
+    }
+
+    public List<GoodsImg> queryGoodsDetailImgs(Long goodsId) {
+        GoodsImg goodsImg = new GoodsImg();
+        goodsImg.setGoodsID(goodsId);
+        goodsImg.setType(1);
+        return goodsImgMapper.select(goodsImg);
     }
 }

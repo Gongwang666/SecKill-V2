@@ -16,44 +16,6 @@ define(['jquery','knockout','constants','text!' + baseURL + '/assets/appJS/templ
         };
 
         this.getGoodsInfoByIndex = function(index,type){
-            /*var goodsInfo = [
-                {
-                name:'雪之恋和风大福',
-                price:'13.5',
-                detailUrl:'aa',
-                imgUrl:'../assets/images/2.jpg'
-                },
-                {
-                    name:'雪之恋和风大福',
-                    price:'13.5',
-                    detailUrl:'aa',
-                    imgUrl:'../assets/images/2.jpg'
-                },
-                {
-                    name:'雪之恋和风大福',
-                    price:'13.5',
-                    detailUrl:'aa',
-                    imgUrl:'../assets/images/2.jpg'
-                },
-                {
-                    name:'雪之恋和风大福',
-                    price:'13.5',
-                    detailUrl:'aa',
-                    imgUrl:'../assets/images/2.jpg'
-                },
-                {
-                    name:'雪之恋和风大福',
-                    price:'13.5',
-                    detailUrl:'aa',
-                    imgUrl:'../assets/images/2.jpg'
-                },
-                {
-                    name:'雪之恋和风大福',
-                    price:'13.5',
-                    detailUrl:'aa',
-                    imgUrl:'../assets/images/2.jpg'
-                },
-            ];*/
             var goodsInfo = this.goodsInfo();
             var info = goodsInfo[index];
             if(typeof info == 'undefined' || info == null){
