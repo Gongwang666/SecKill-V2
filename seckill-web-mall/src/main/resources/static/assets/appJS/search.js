@@ -13,6 +13,22 @@ require.config({
 
 require(['jquery', 'knockout', 'quick_links', 'AmazeUI',"script",'constants'],function ($,ko) {
     var viewModel = {
+        catId:ko.observable(''),
+        goodsList:ko.observableArray([]),
+        query:{
+            queryGoods:function () {
+                var catId = viewModel.catId();
+                $.ajax({
+                    type: "POST",
+                    url: "/goodsList/queryGoods",
+                    data: {catId:catId},
+                    async: false,
+                    success:function (result) {
+                        viewModel.goodsList(result);
+                    }
+                })
+            }
+        },
         register:function () {
             //注册头部导航条组件
             ko.components.register('head-nav-bar', {
@@ -28,9 +44,22 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI',"script",'constants'],fu
             });
         },
         pageInit:function () {
+
+            var urlStr = window.location.search;
+            viewModel.catId(urlStr.substring(urlStr.indexOf('=')+1));
+
             viewModel.register();
+
+            viewModel.query.queryGoods();
+        },
+        event:{
+            toGoodsDetail:function (id) {
+                return URLS.INTRODUCTION+'?goodsId='+id;
+            }
         }
     };
     viewModel.pageInit();
-    ko.applyBindings();
+    ko.applyBindings(viewModel);
+
+    window.viewModel = viewModel;
 });

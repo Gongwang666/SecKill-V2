@@ -145,6 +145,11 @@
         $('.update-img').on('click', function () {
             var id = $(this).attr('data-goods-id');
             $('#content').load('/goods/goodsInfo/imgPage?page=1&id='+id);
+        });
+
+        $('.cat-page').on('click', function () {
+            var page = $(this).attr('data-cat-page');
+            $('#content').load('/goods/goodsInfo/imgManage?page='+page);
         })
     });
 </script>

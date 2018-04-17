@@ -1,8 +1,12 @@
 require.config({
     baseUrl: 'assets/js/',
+    shim: {
+        'jquery.session': ['jquery']
+    },
     paths: {
         "jquery": ["https://cdn.bootcss.com/jquery/3.3.1/jquery.min", "jquery.min"],
         "knockout": ["https://cdn.bootcss.com/knockout/3.4.2/knockout-min"],
+        "jquery.session":"jquery.session",
         "quick_links": "quick_links",
         "AmazeUI": ["https://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min", "amazeui.min"],
         "constants":["constants"],
@@ -10,13 +14,13 @@ require.config({
     }
 })
 
-define(['jquery', 'knockout', 'quick_links', 'AmazeUI','constants'], function ($, ko) {
+require(['jquery', 'knockout', 'jquery.session','quick_links', 'AmazeUI','constants'], function ($, ko) {
     var URL = {
         QUERY_CAT_LIST: "/getCatList"
     };
 
     var viewModel = {
-        goodsInfo:ko.observable({title:"西瓜"}),
+        goodsInfo:ko.observable(),
         register:function () {
             //注册头部导航条组件
             ko.components.register('head-nav-bar', {
@@ -69,7 +73,7 @@ define(['jquery', 'knockout', 'quick_links', 'AmazeUI','constants'], function ($
 
                     if(val.products!=null && val.products.length >0){
                         $.each(val.products,function (index,va) {
-                            dd += '<dd><a title="" href="#"><span>'+va.goodsCats.catName+'</span></a></dd>';
+                            dd += '<dd><a title="" href="'+URLS.GOODS_LIST+'?catId='+va.goodsCats.id+'"><span>'+va.goodsCats.catName+'</span></a></dd>';
                         });
                     }
                     dl += '<dl class="dl-sort">' +
@@ -112,6 +116,9 @@ define(['jquery', 'knockout', 'quick_links', 'AmazeUI','constants'], function ($
                 viewModel.goodsInfo(result);
             },'json');
         },
+        getUserInfo:function () {
+            return $.session.get('user');
+        },
         event:{
             //显示隐藏菜单
             showOrHideCats:function () {
@@ -124,12 +131,16 @@ define(['jquery', 'knockout', 'quick_links', 'AmazeUI','constants'], function ($
                     $(this).removeClass("hover")
                     $(this).children("div.menu-in").css("display", "none")
                 });
+            },
+            //跳转到商品列表页
+            toGoodsList:function (catId) {
+                $(window).attr('location',URLS.GOODS_LIST+'?catId='+catId);
             }
         }
     };
     viewModel.pageInit();
     ko.applyBindings(viewModel);
-
+    window.viewModel = viewModel;
     $(function () {
         if ($(window).width() < 640) {
             function autoScroll(obj) {

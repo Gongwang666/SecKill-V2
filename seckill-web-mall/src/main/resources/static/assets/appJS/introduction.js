@@ -107,4 +107,6 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jque
     viewModel.pageInit();
     ko.applyBindings(viewModel);
 
+    window.viewModel = viewModel;
+
 });

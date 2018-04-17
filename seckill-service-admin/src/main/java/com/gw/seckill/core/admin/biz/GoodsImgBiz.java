@@ -21,6 +21,7 @@ public class GoodsImgBiz {
     　* @创建时间: 2018/3/15 23:44
       */
     public int addImg(GoodsImg goodsImg) {
+        goodsImg.setType(1);
         return goodsImgDAO.insert(goodsImg);
     }
     /**

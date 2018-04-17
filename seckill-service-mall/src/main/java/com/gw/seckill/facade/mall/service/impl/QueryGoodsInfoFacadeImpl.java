@@ -36,4 +36,9 @@ public class QueryGoodsInfoFacadeImpl implements QueryGoodsInfoFacade {
     public List<GoodsImg> queryGoodsDetailImgs(Long goodsId) {
         return queryGoodsInfoBiz.queryGoodsDetailImgs(goodsId);
     }
+
+    @Override
+    public List<Goods> queryGoodsByCatId(Integer catId) {
+        return queryGoodsInfoBiz.queryGoodsByCatId(catId);
+    }
 }

@@ -53,4 +53,13 @@ public interface QueryGoodsInfoFacade {
     　* @创建时间: 2018/4/16 18:33
       */
     List<GoodsImg> queryGoodsDetailImgs(Long goodsId);
+    /**
+    　* @描述:     查询分类下的所有商品
+    　* @参数描述: 
+    　* @返回值:
+    　* @异常:     
+    　* @作者:     gongwang
+    　* @创建时间: 2018/4/17 17:04
+      */
+    List<Goods> queryGoodsByCatId(Integer catId);
 }

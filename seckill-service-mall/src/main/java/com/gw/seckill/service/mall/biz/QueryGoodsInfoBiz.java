@@ -88,4 +88,12 @@ public class QueryGoodsInfoBiz {
         goodsImg.setType(1);
         return goodsImgMapper.select(goodsImg);
     }
+
+    public List<Goods> queryGoodsByCatId(Integer catId) {
+        Goods goods = new Goods();
+        goods.setIsSale((byte)1);
+        goods.setGoodsCatId(catId);
+        goods.setDataFlag((byte)1);
+        return goodsDAO.select(goods);
+    }
 }
