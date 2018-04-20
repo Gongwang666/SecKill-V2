@@ -174,6 +174,23 @@ CREATE TABLE `sys_user` (
 
 insert  into `sys_user`(`ID`,`USER_NAME`,`PASS_WORD`,`SALT`,`ROLE_IDS`,`LOCKED`) values (1,'admin','e10adc3949ba59abbe56e057f20f883e','8d78869f470951332959580424d4bf4f','1',0),(2,'admin1','e10adc3949ba59abbe56e057f20f883e','8d78869f470951332959580424d4bf4f','2',0),(3,'zhangsan','a360c5ee1e41a2134ac399a91ab13ed8','a7077010c381878726f349dea7c68823','1',0),(4,'gongwang','2967054c08562f61abbe92bc576a3c6a','2108078c09d2b7b277654480e96d761f','2',0),(38,'lisi','c5175e798b4ac282b56e9b07a750f8a4','36f290ff3f599b9d0105cb28d0ab79ba','6',0),(39,'wangmazi','de4db98a15fe7129c292882a8130354c','1d7ca302aeb3467880ef71a190972764','1',0);
 
+/*Table structure for table `user` */
+
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USER_NAME` varchar(100) NOT NULL,
+  `PASSWORD` varchar(100) NOT NULL,
+  `SALT` varchar(100) NOT NULL,
+  `DATA_FLAG` int(3) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `user` */
+
+insert  into `user`(`ID`,`USER_NAME`,`PASSWORD`,`SALT`,`DATA_FLAG`) values (1,'gw','eb6fba4676192c13bd0d280a1cbbb166','f20559219069640060345dc1c023ff30',0);
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;

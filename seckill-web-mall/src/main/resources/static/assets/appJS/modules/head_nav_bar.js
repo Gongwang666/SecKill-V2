@@ -19,7 +19,7 @@ define(['jquery','knockout','constants',
             }
         };
         this.toLoginPage = function () {
-            $(window).attr("location",URLS.LOGIN);
+            $(window).attr("location",URLS.LOGIN_PAGE);
         };
         this.toRegisterPage = function () {
             $(window).attr("location",URLS.REGISTER);

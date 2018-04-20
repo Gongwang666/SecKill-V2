@@ -5,6 +5,7 @@ var URLS = {
     HOME:baseURL+"/home",
     INTRODUCTION:baseURL+'/introduction',//商品详情页
     GOODS_LIST:baseURL+'/goodsList',//商品列表页
-    LOGIN:baseURL+'/user/login',//登录页面
-    REGISTER:baseURL+'/user/register',//注册页面
+    LOGIN_PAGE:baseURL+'/loginPage',//登录页面
+    REGISTER:baseURL+'/register',//注册页面
+    LOGIN:baseURL+'/login',//登录
 };
