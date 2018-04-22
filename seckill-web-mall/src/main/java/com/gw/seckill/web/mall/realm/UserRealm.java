@@ -6,6 +6,7 @@ import com.gw.seckill.facade.admin.entity.User;
 import com.gw.seckill.facade.admin.service.UserFacade;
 import com.gw.seckill.facade.mall.service.UserInfoFacade;
 import com.gw.seckill.web.mall.cache.SpringCacheManagerWrapper;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -72,11 +73,14 @@ public class UserRealm extends AuthorizingRealm {
 		if(user.getDataFlag() == 1) {
 			throw new LockedAccountException(); //帐号锁定
 		}
+
 		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(userName,
 				user.getPassWord(),
 				ByteSource.Util.bytes(userName+user.getSalt()),
 				getName());
-
+		user.setPassWord("");
+		user.setSalt("");
+		SecurityUtils.getSubject().getSession().setAttribute("user",user);
 		return info;
 	}
 

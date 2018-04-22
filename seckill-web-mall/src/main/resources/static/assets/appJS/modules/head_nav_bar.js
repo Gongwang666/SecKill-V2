@@ -2,19 +2,25 @@
 define(['jquery','knockout','constants',
         'text!' + baseURL + '/assets/appJS/templates/head_nav_bar.html'], function($,ko,co,html) {
     function HeadNavBarViewModel(params) {
-        var user = $.session.get('user');
+        if(typeof params == 'undefined'){
+            this.userName = ko.observable('');
+        }else{
+            this.userName = ko.observable(params.userName);
+        }
+
         this.toHomePage = function () {
             $(window).attr("location",URLS.HOME);
         };
+
         this.isLogin = function () {
-            if(typeof user == 'undefined'){
+            if(typeof params == 'undefined'){
                 return false;
             }else{
                 return true;
             }
         };
         this.toPersonPage = function () {
-            if(typeof user == 'undefined'){
+            if(typeof params == 'undefined'){
                 $(window).attr("location",URLS.LOGIN);
             }
         };

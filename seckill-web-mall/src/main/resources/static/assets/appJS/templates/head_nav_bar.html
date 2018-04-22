@@ -1,12 +1,16 @@
 <div class="am-container header">
     <ul class="message-l">
         <div class="topMessage">
-            <div class="menu-hd" data-bind="visible:!$parent.isLogin">
-                <a href="#" target="_top" class="h" data-bind="click:toLoginPage">亲，请登录</a>
-                <a href="#" target="_top" data-bind="click:toRegisterPage">免费注册</a>
-            </div>
-            <div class="menu-hd" data-bind="visible:$parent.isLogin">
-                <a href="#" target="_top" class="h" data-bind="text:user.userName"></a>
+            <div class="menu-hd">
+                <div data-bind="visible:!isLogin()">
+                    <a href="#" target="_top" class="h" data-bind="click:toLoginPage">亲，请登录</a>
+                    <a href="#" target="_top" data-bind="click:toRegisterPage">免费注册</a>
+                </div>
+                <div data-bind="visible:isLogin()">
+                    <a href="#" target="_top" class="h" data-bind="style:{color:'red'},text:userName"></a>
+                    <a href="#" target="_top"></a>
+                </div>
+
             </div>
         </div>
     </ul>

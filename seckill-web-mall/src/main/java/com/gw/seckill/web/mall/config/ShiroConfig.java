@@ -6,6 +6,7 @@ import com.gw.seckill.web.mall.cache.SpringCacheManagerWrapper;
 import com.gw.seckill.web.mall.credentials.RetryLimitHashedCredentialsMatcher;
 import com.gw.seckill.web.mall.filter.KickoutSessionControlFilter;
 import com.gw.seckill.web.mall.filter.URLPermissionsFilter;
+import com.gw.seckill.web.mall.filter.UserLoginFilter;
 import com.gw.seckill.web.mall.realm.UserRealm;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
@@ -40,7 +41,7 @@ public class ShiroConfig {
 	@Bean
 	public FilterRegistrationBean filterRegistrationBean() {
 		FilterRegistrationBean filterRegistration = new FilterRegistrationBean();
-        filterRegistration.setFilter(new DelegatingFilterProxy("shiroFilter")); 
+        filterRegistration.setFilter(new DelegatingFilterProxy("shiroFilter"));
         filterRegistration.setEnabled(true);
         filterRegistration.addUrlPatterns("/*"); 
         filterRegistration.setDispatcherTypes(DispatcherType.REQUEST);
@@ -56,17 +57,19 @@ public class ShiroConfig {
 											  KickoutSessionControlFilter kickoutSessionControlFilter){
 		ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
 		bean.setSecurityManager(securityManager);
-		bean.setLoginUrl("/user/login");
+		bean.setLoginUrl("/loginPage");
 		bean.setUnauthorizedUrl("/404");
 		
 		Map<String, Filter>filters = Maps.newHashMap();
 		filters.put("kickout",kickoutSessionControlFilter);
 		filters.put("anon", new AnonymousFilter());
-		filters.put("perms", urlPermissionsFilter());
+		//filters.put("perms", urlPermissionsFilter());
+		filters.put("userLogin",userLoginFilter());
 		bean.setFilters(filters);
 		
 		Map<String, String> chains = Maps.newHashMap();
-		chains.put("/**", "perms,kickout");
+		//chains.put("/loginPage", "userLogin");
+		chains.put("/**", "kickout");
 		bean.setFilterChainDefinitionMap(chains);
 		return bean;
 	}
@@ -188,7 +191,7 @@ public class ShiroConfig {
 		kickoutSessionControlFilter.setMaxSession(1);
 		kickoutSessionControlFilter.setSessionManager(sessionManager);
 		kickoutSessionControlFilter.setCacheManager(shiroCacheManager);
-		kickoutSessionControlFilter.setKickoutUrl("/user/login");
+		kickoutSessionControlFilter.setKickoutUrl("/loginPage");
 		return kickoutSessionControlFilter;
 	}
 	//会话ID生成器
@@ -237,5 +240,11 @@ public class ShiroConfig {
 		defaultWebSessionManager.setSessionIdCookieEnabled(true);
 		defaultWebSessionManager.setSessionIdCookie(sessionIdCookie);
 		return defaultWebSessionManager;
+	}
+	@Bean
+	public UserLoginFilter userLoginFilter(){
+		UserLoginFilter userLoginFilter = new UserLoginFilter();
+		userLoginFilter.processPathConfig("/login",",");
+		return  userLoginFilter;
 	}
 }

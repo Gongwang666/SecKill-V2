@@ -8,4 +8,5 @@ var URLS = {
     LOGIN_PAGE:baseURL+'/loginPage',//登录页面
     REGISTER:baseURL+'/register',//注册页面
     LOGIN:baseURL+'/login',//登录
+    GET_SESSION_USER_INFO:baseURL+'/getSessionUserInfo'
 };

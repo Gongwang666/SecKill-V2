@@ -28,6 +28,7 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jque
         goodsSpecName:ko.observable(''),
         specItems:ko.observableArray(),
         goodsDetailImgs:ko.observableArray(),
+        userInfo:ko.observable(),
         render:{
             isSelect:function (element, index, data) {
                 if(viewModel.selectIndex == 1){
@@ -61,6 +62,7 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jque
             viewModel.querySpecInfo();
             //查询商品详情图片
             viewModel.queryDetailImgs();
+            viewModel.getUserInfo();
             //图片轮播
             $('.flexslider').flexslider({
                 animation: "slide",
@@ -102,7 +104,29 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jque
             $.post('/introduction/getDetailImgs',{id:id},function (result) {
                 viewModel.goodsDetailImgs(result);
             },'json');
-        }
+        },
+        getUserInfo:function(){
+            $.ajax({
+                url: URLS.GET_SESSION_USER_INFO,
+                contentType: "application/json;charset=utf-8",
+                type: 'POST', //GET
+                async: false,    //或false,是否异步
+                data: {},
+                timeout: 5000,    //超时时间
+                dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                success: function (result) {
+                    console.log(result);
+                    viewModel.userInfo(result);
+                    return result;
+                },
+                error: function (xhr, textStatus) {
+                    console.log(xhr)
+                },
+                complete: function () {
+                    console.log('结束');
+                }
+            });
+        },
     };
     viewModel.pageInit();
     ko.applyBindings(viewModel);

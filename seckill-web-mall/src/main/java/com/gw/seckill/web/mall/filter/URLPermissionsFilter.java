@@ -1,8 +1,10 @@
 package com.gw.seckill.web.mall.filter;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.gw.seckill.facade.admin.entity.User;
 import com.gw.seckill.facade.admin.service.UserFacade;
 //import com.gw.seckill.web.admin.enums.EnumWithOutPermissionUrls;
+import com.gw.seckill.web.mall.enums.PermissionsEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
@@ -27,10 +30,9 @@ public class URLPermissionsFilter extends PermissionsAuthorizationFilter{
 
 	@Override
 	protected boolean onAccessDenied(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
-		if(SecurityUtils.getSubject().getPrincipal()!=null){
-			return true;
-		}
-		return super.onAccessDenied(request, response, mappedValue);
+		HttpServletResponse res = (HttpServletResponse)response;
+		res.sendRedirect("/home");
+		return true;
 	}
 
 	/**

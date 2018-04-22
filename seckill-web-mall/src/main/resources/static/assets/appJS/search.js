@@ -13,6 +13,7 @@ require.config({
 
 require(['jquery', 'knockout', 'quick_links', 'AmazeUI',"script",'constants'],function ($,ko) {
     var viewModel = {
+        userInfo:ko.observable(),
         catId:ko.observable(''),
         goodsList:ko.observableArray([]),
         query:{
@@ -51,12 +52,35 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI',"script",'constants'],fu
             viewModel.register();
 
             viewModel.query.queryGoods();
+            viewModel.getUserInfo();
         },
         event:{
             toGoodsDetail:function (id) {
                 return URLS.INTRODUCTION+'?goodsId='+id;
             }
-        }
+        },
+        getUserInfo:function(){
+            $.ajax({
+                url: URLS.GET_SESSION_USER_INFO,
+                contentType: "application/json;charset=utf-8",
+                type: 'POST', //GET
+                async: false,    //或false,是否异步
+                data: {},
+                timeout: 5000,    //超时时间
+                dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                success: function (result) {
+                    console.log(result);
+                    viewModel.userInfo(result);
+                    return result;
+                },
+                error: function (xhr, textStatus) {
+                    console.log(xhr)
+                },
+                complete: function () {
+                    console.log('结束');
+                }
+            });
+        },
     };
     viewModel.pageInit();
     ko.applyBindings(viewModel);

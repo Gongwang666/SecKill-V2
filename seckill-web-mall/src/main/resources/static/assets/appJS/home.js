@@ -21,6 +21,7 @@ require(['jquery', 'knockout', 'jquery.session','quick_links', 'AmazeUI','consta
 
     var viewModel = {
         goodsInfo:ko.observable(),
+        userInfo:ko.observable(),
         register:function () {
             //注册头部导航条组件
             ko.components.register('head-nav-bar', {
@@ -45,10 +46,11 @@ require(['jquery', 'knockout', 'jquery.session','quick_links', 'AmazeUI','consta
             //图片轮播
             $('.am-slider').flexslider();
             viewModel.catMenuInit();
+            viewModel.getGoodsInfo();
+            viewModel.getUserInfo();
         },
         //分类菜单初始化
         catMenuInit: function () {
-            viewModel.getGoodsInfo();
             //viewModel.goodsInfo = {title:"甜品"}
             $.post(URL.QUERY_CAT_LIST, function (data) {
                 console.log(data)
@@ -116,8 +118,27 @@ require(['jquery', 'knockout', 'jquery.session','quick_links', 'AmazeUI','consta
                 viewModel.goodsInfo(result);
             },'json');
         },
-        getUserInfo:function () {
-            return $.session.get('user');
+        getUserInfo:function(){
+            $.ajax({
+                url: URLS.GET_SESSION_USER_INFO,
+                contentType: "application/json;charset=utf-8",
+                type: 'POST', //GET
+                async: false,    //或false,是否异步
+                data: {},
+                timeout: 5000,    //超时时间
+                dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                success: function (result) {
+                    console.log(result);
+                    viewModel.userInfo(result);
+                    return result;
+                },
+                error: function (xhr, textStatus) {
+                    console.log(xhr)
+                },
+                complete: function () {
+                    console.log('结束');
+                }
+            });
         },
         event:{
             //显示隐藏菜单

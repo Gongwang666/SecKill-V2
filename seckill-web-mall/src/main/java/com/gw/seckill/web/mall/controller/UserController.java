@@ -7,10 +7,13 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.io.Serializable;
 
 @RestController
 public class UserController {
@@ -37,6 +40,7 @@ public class UserController {
         String password = user.getPassWord();
         UsernamePasswordToken token = new UsernamePasswordToken(account, password);
         Subject subject = SecurityUtils.getSubject();
+        User us =(User) subject.getSession().getAttribute("user");
         try {
             subject.login(token);
         }catch (LockedAccountException e){
@@ -59,5 +63,9 @@ public class UserController {
         result.setStatus(0);
         result.setMsg("登录成功!");
         return result;
+    }
+    @RequestMapping("/getSessionUserInfo")
+    public User getSessionUserInfo(){
+        return (User) SecurityUtils.getSubject().getSession().getAttribute("user");
     }
 }
