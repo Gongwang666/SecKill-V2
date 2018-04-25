@@ -7,11 +7,13 @@ require.config({
         "quick_links": "quick_links",
         "script":"script",
         "constants":["constants"],
-        "text":["https://cdn.bootcss.com/require-text/2.0.12/text.min"]
+        "text":["https://cdn.bootcss.com/require-text/2.0.12/text.min"],
+        "css":["https://cdn.bootcss.com/require-css/0.1.10/css"],
+        "jquery-ui":["https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min"]
     }
 })
 
-require(['jquery', 'knockout', 'quick_links', 'AmazeUI',"script",'constants'],function ($,ko) {
+require(['jquery', 'knockout', 'quick_links', 'AmazeUI',"script",'constants','jquery-ui'],function ($,ko) {
     var viewModel = {
         userInfo:ko.observable(),
         catId:ko.observable(''),

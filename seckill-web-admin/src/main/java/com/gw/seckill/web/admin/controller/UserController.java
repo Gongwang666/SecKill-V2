@@ -89,7 +89,7 @@ public class UserController {
 
     @RequestMapping("/user/logout.do")
     public String userLogOut(){
-        Cache<String, Set<String>> authorizationCache = shiroCacheManager.getCache("authorizationCache");;
+        Cache<String, Set<String>> authorizationCache = shiroCacheManager.getCache("authorizationCache");
         Subject subject = SecurityUtils.getSubject();
         String userName = subject.getPrincipal().toString();
         //用户登出时清除权限缓存

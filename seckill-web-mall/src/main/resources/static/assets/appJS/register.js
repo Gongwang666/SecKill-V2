@@ -11,4 +11,4 @@ require.config({
 
 require(['jquery', 'knockout','AmazeUI','constants'],function ($,ko) {
 
-}
+})

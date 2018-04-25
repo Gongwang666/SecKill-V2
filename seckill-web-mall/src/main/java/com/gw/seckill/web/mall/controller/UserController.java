@@ -68,4 +68,9 @@ public class UserController {
     public User getSessionUserInfo(){
         return (User) SecurityUtils.getSubject().getSession().getAttribute("user");
     }
+    @RequestMapping("/logout")
+    public void logout(){
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+    }
 }

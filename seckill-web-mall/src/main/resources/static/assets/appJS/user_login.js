@@ -16,7 +16,9 @@ require(['jquery', 'knockout','AmazeUI','constants'],function ($,ko) {
     var viewModel = {
         event:{
             login:function () {
-                $.post(URLS.LOGIN,{userName:'gw',passWord:'123'},function (result) {
+                var userName = $('#userName').val();
+                var passWord = $('#passWord').val();
+                $.post(URLS.LOGIN,{userName:userName,passWord:passWord},function (result) {
                     if(result.status == 0){
                         $( location ).attr("href", URLS.HOME);
                     }else{

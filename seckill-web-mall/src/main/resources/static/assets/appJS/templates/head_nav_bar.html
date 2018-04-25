@@ -1,3 +1,6 @@
+<div id="dialog" title="提示框" hidden="hidden">
+    <p id="dialog-message">确认退出?</p>
+</div>
 <div class="am-container header">
     <ul class="message-l">
         <div class="topMessage">
@@ -7,7 +10,7 @@
                     <a href="#" target="_top" data-bind="click:toRegisterPage">免费注册</a>
                 </div>
                 <div data-bind="visible:isLogin()">
-                    <a href="#" target="_top" class="h" data-bind="style:{color:'red'},text:userName"></a>
+                    <a href="#" target="_top" class="h" data-bind="style:{color:'red'},text:userName,click:logOut"></a>
                     <a href="#" target="_top"></a>
                 </div>
 

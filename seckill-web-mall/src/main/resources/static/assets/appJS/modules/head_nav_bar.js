@@ -1,6 +1,6 @@
 //头部导航栏组件
 define(['jquery','knockout','constants',
-        'text!' + baseURL + '/assets/appJS/templates/head_nav_bar.html'], function($,ko,co,html) {
+        'text!' + baseURL + '/assets/appJS/templates/head_nav_bar.html','css!https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min'], function($,ko,co,html) {
     function HeadNavBarViewModel(params) {
         if(typeof params == 'undefined'){
             this.userName = ko.observable('');
@@ -29,6 +29,26 @@ define(['jquery','knockout','constants',
         };
         this.toRegisterPage = function () {
             $(window).attr("location",URLS.REGISTER);
+        };
+        this.logOut = function () {
+            //alert('确认退出登录？');
+            $('#dialog').dialog({
+                buttons:{
+                    "确定":function(){
+                        $.ajax({
+                            url:URLS.LOGOUT,
+                            async:false,
+                            success:function () {
+                                $(window).attr("location",URLS.HOME);
+                            }
+                        });
+                        //$(this).dialog('close');
+                    },
+                    "取消":function(){
+                        $(this).dialog('close');
+                    }
+                }
+            });
         }
     }
 
