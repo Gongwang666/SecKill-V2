@@ -2,6 +2,8 @@ package com.gw.seckill.web.mall.controller;
 
 import com.gw.seckill.common.web.exception.pojo.Result;
 import com.gw.seckill.facade.admin.entity.User;
+import com.gw.seckill.web.mall.utils.MailUtil;
+import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
@@ -14,9 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @RestController
 public class UserController {
+    private final Logger logger = Logger.getLogger(UserController.class);
     @RequestMapping("/register")
     public ModelAndView register(){
         ModelAndView mo = new ModelAndView();
@@ -40,7 +44,7 @@ public class UserController {
         String password = user.getPassWord();
         UsernamePasswordToken token = new UsernamePasswordToken(account, password);
         Subject subject = SecurityUtils.getSubject();
-        User us =(User) subject.getSession().getAttribute("user");
+        //User us =(User) subject.getSession().getAttribute("user");
         try {
             subject.login(token);
         }catch (LockedAccountException e){
@@ -71,6 +75,13 @@ public class UserController {
     @RequestMapping("/logout")
     public void logout(){
         Subject subject = SecurityUtils.getSubject();
+        User user = (User)subject.getSession().getAttribute("user");
         subject.logout();
+        logger.info("用户:"+user.getUserName()+"在"+new Date()+"退出的登录");
+    }
+
+    @RequestMapping("/doRegister")
+    public void doRegister(){
+
     }
 }
