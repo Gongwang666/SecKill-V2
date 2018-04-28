@@ -5,13 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Component;
 
+@Component("mailUtil")
 public class MailUtil {
     private final Logger logger = Logger.getLogger(MailUtil.class);
     @Autowired
     private JavaMailSender mailSender;//spring 提供的邮件发送类
-    //@Value("${mail.mail.username}")
-    private String from ="www.1543971447@qq.com" ;
+    @Value("${mail.fromMail.addr}")
+    private String from;
 
     public void sendSimpleEmail(String to, String subject, String content) {
         SimpleMailMessage message = new SimpleMailMessage();//创建简单邮件消息

@@ -10,5 +10,22 @@ require.config({
 })
 
 require(['jquery', 'knockout','AmazeUI','constants'],function ($,ko) {
+    var viewModel = {
+        pageInit:function () {
+            $(function () {
+                $('#doc-my-tabs').tabs();
+            })
+        },
+        event:{
+            doRegister:function () {
+                $.post(URLS.DO_REGISTER,{},function (result) {
+                    
+                },'json');
+            }
+        }
+    };
 
+    viewModel.pageInit();
+    ko.applyBindings(viewModel);
+    window.viewModel = viewModel;
 })

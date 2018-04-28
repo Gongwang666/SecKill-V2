@@ -11,6 +11,8 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,6 +23,8 @@ import java.util.Date;
 @RestController
 public class UserController {
     private final Logger logger = Logger.getLogger(UserController.class);
+    @Autowired
+    private MailUtil mailUtil;
     @RequestMapping("/register")
     public ModelAndView register(){
         ModelAndView mo = new ModelAndView();
@@ -82,6 +86,6 @@ public class UserController {
 
     @RequestMapping("/doRegister")
     public void doRegister(){
-
+        mailUtil.sendSimpleEmail("253285277@qq.com","test","test");
     }
 }
