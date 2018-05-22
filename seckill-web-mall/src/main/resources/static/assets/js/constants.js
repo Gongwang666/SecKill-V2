@@ -11,5 +11,7 @@ var URLS = {
     GET_SESSION_USER_INFO:baseURL+'/getSessionUserInfo',
     LOGOUT:baseURL+'/logout',
     DO_REGISTER:baseURL+'/doRegister',
-    PERSON_PAGE:baseURL+'/order'
+    PERSON_PAGE:baseURL+'/order',
+    CART_PAGE:baseURL+'/cart',
+    ADD_GOODS_TO_CART:baseURL+'/addGoodsToCart'
 };

@@ -129,6 +129,13 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jque
                 }
             });
         },
+        event:{
+            addGoodsToCart:function () {
+                $.post(URLS.ADD_GOODS_TO_CART,{},function () {
+                    
+                },'json');
+            }
+        }
     };
     viewModel.pageInit();
     ko.applyBindings(viewModel);

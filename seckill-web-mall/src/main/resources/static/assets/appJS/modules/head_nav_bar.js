@@ -26,6 +26,13 @@ define(['jquery','knockout','constants',
             }
             $(window).attr("location",URLS.PERSON_PAGE);
         };
+        this.toCartPage = function () {
+            if(typeof params == 'undefined'){
+                $(window).attr("location",URLS.LOGIN_PAGE);
+                return ;
+            }
+            $(window).attr("location",URLS.CART_PAGE);
+        }
         this.toLoginPage = function () {
             $(window).attr("location",URLS.LOGIN_PAGE);
         };
