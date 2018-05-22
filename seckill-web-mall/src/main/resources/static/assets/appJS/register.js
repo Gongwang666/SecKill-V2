@@ -18,8 +18,19 @@ require(['jquery', 'knockout','AmazeUI','constants'],function ($,ko) {
         },
         event:{
             doRegister:function () {
-                $.post(URLS.DO_REGISTER,{},function (result) {
-                    
+                var email = $('#email').val();
+                var pw = $('#pw').val();
+                var sure = $('#sure').val();
+                if(email==""||pw==""||sure==""){
+                    alert("信息输入不完整!");
+                    return ;
+                }
+                if(!pw==sure){
+                    alert("两次输入的密码不同");
+                    return ;
+                }
+                $.post(URLS.DO_REGISTER,{userName:email,passWord:pw},function (result) {
+                    alert(result.msg);
                 },'json');
             }
         }

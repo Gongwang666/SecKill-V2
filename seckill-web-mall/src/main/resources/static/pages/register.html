@@ -44,11 +44,11 @@
                             </div>
                             <div class="user-pass">
                                 <label for="password"><i class="am-icon-lock"></i></label>
-                                <input type="password" name="" placeholder="设置密码">
+                                <input type="password" id="pw" name="" placeholder="设置密码">
                             </div>
                             <div class="user-pass">
                                 <label for="passwordRepeat"><i class="am-icon-lock"></i></label>
-                                <input type="password" name=""  placeholder="确认密码">
+                                <input type="password" id="sure" name=""  placeholder="确认密码">
                             </div>
 
                         </form>
@@ -59,7 +59,7 @@
                             </label>
                         </div>
                         <div class="am-cf">
-                            <input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
+                            <input data-bind="click:event.doRegister" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
                         </div>
 
                     </div>
@@ -92,7 +92,7 @@
                             </label>
                         </div>
                         <div class="am-cf">
-                            <input data-bind="click:event.doRegister" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
+                            <input name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
                         </div>
 
                         <hr>

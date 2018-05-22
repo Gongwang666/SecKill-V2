@@ -13,6 +13,8 @@ public class User extends BaseEntity implements Serializable {
     private String passWord;
     @Column(name = "SALT")
     private String salt;
+    @Column(name = "URL_STR")
+    private String urlStr;
     @Column(name = "DATA_FLAG")
     private Integer dataFlag;
 
@@ -46,5 +48,13 @@ public class User extends BaseEntity implements Serializable {
 
     public void setDataFlag(Integer dataFlag) {
         this.dataFlag = dataFlag;
+    }
+
+    public String getUrlStr() {
+        return urlStr;
+    }
+
+    public void setUrlStr(String urlStr) {
+        this.urlStr = urlStr;
     }
 }

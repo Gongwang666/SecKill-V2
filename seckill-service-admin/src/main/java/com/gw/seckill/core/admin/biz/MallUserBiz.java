@@ -8,6 +8,8 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service("mallUserBiz")
 public class MallUserBiz {
     @Autowired
@@ -33,7 +35,22 @@ public class MallUserBiz {
 
         user.setPassWord(encodedPassword);
         user.setSalt(salt2);
+        //0表示未激活，1表示已激活
         user.setDataFlag(0);
+        user.setUrlStr(UUID.randomUUID().toString());
         return userMapper.insert(user);
+    }
+
+    public int register(User user) {
+        return addMallUser(user);
+    }
+
+    public void active(String code) {
+        User user = new User();
+        user.setUrlStr(code);
+        User memberInfo = userMapper.selectOne(user);
+        memberInfo.setDataFlag(1);
+        memberInfo.setUrlStr("");
+        userMapper.updateByPrimaryKeySelective(memberInfo);
     }
 }

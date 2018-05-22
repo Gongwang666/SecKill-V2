@@ -11,6 +11,7 @@ public class ConstantClassFunction {
     private static final String DEFAULT_PASSWORD = "123456";
     //文件上传服务器地址
     private static final String FILE_UPLOAD_URL = "http://120.79.214.81/";
+    private static final String ACTIVATE_URL = "http://127.0.0.1:6689/";
 
     public static Integer getHASH_ITERATIONS(){
         return HASH_ITERATIONS;
@@ -26,5 +27,8 @@ public class ConstantClassFunction {
     }
     public static String getFILE_UPLOAD_URL(){
         return FILE_UPLOAD_URL;
+    }
+    public static String getACTIVATE_URL(){
+        return ACTIVATE_URL;
     }
 }

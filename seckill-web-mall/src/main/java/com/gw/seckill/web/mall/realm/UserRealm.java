@@ -70,7 +70,7 @@ public class UserRealm extends AuthorizingRealm {
 		if (user == null) {
 			throw new UnknownAccountException();
 		}
-		if(user.getDataFlag() == 1) {
+		if(user.getDataFlag() == 0) {
 			throw new LockedAccountException(); //帐号锁定
 		}
 
