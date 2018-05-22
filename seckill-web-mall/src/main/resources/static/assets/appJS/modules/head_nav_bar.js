@@ -21,8 +21,10 @@ define(['jquery','knockout','constants',
         };
         this.toPersonPage = function () {
             if(typeof params == 'undefined'){
-                $(window).attr("location",URLS.LOGIN);
+                $(window).attr("location",URLS.LOGIN_PAGE);
+                return ;
             }
+            $(window).attr("location",URLS.PERSON_PAGE);
         };
         this.toLoginPage = function () {
             $(window).attr("location",URLS.LOGIN_PAGE);

@@ -11,4 +11,5 @@ var URLS = {
     GET_SESSION_USER_INFO:baseURL+'/getSessionUserInfo',
     LOGOUT:baseURL+'/logout',
     DO_REGISTER:baseURL+'/doRegister',
+    PERSON_PAGE:baseURL+'/order'
 };
