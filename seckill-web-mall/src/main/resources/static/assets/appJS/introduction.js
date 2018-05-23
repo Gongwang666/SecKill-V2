@@ -131,8 +131,18 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jque
         },
         event:{
             addGoodsToCart:function () {
-                $.post(URLS.ADD_GOODS_TO_CART,{},function () {
-                    
+                if(typeof viewModel.userInfo() =='undefined'){
+                    $(window).attr("location",URLS.LOGIN_PAGE);
+                    return ;
+                }
+                var num = $('#text_box').val();
+                var postData = {
+                    goodsId:viewModel.goodsId,
+                    goodsNum:num
+                };
+
+                $.post(URLS.ADD_GOODS_TO_CART,postData,function () {
+                    alert("添加成功!");
                 },'json');
             }
         }

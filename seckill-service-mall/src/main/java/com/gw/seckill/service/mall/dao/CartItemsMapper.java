@@ -1,11 +1,11 @@
 package com.gw.seckill.service.mall.dao;
 
 import com.gw.seckill.common.core.dao.BaseMapper;
-import com.gw.seckill.facade.mall.entity.Cart;
+import com.gw.seckill.facade.mall.entity.CartItems;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-@Repository("cartDAO")
+@Repository("cartItemsDAO")
 @Mapper
-public interface CartMapper extends BaseMapper<Cart> {
+public interface CartItemsMapper extends BaseMapper<CartItems> {
 }
