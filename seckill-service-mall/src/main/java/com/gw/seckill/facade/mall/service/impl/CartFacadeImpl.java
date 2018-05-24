@@ -6,6 +6,9 @@ import com.gw.seckill.facade.mall.entity.CartItems;
 import com.gw.seckill.facade.mall.service.CartFacade;
 import com.gw.seckill.service.mall.biz.CartBiz;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+
 @Service(version = "1.0.0")
 public class CartFacadeImpl implements CartFacade {
     @Autowired
@@ -17,7 +20,7 @@ public class CartFacadeImpl implements CartFacade {
     }
 
     @Override
-    public DTOCartInfo getCartInfo(Integer userId) {
+    public List<DTOCartInfo> getCartInfo(Integer userId) {
         return cartBiz.getCartInfo(userId);
     }
 }

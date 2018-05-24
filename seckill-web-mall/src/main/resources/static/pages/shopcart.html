@@ -69,7 +69,7 @@
                     </div>
                 </div>-->
                 <div class="clear"></div>
-                <div class="bundle-main">
+                <div class="bundle-main" data-bind="foreach:cartInfo">
                     <ul class="item-content clearfix">
                         <li class="td td-chk">
                             <div class="cart-checkbox ">
@@ -82,12 +82,12 @@
                             <div class="item-pic">
                                 <a href="#" target="_blank" data-title="美康粉黛醉美东方唇膏口红正品 持久保湿滋润防水不掉色护唇彩妆"
                                    class="J_MakePoint" data-point="tbcart.8.12">
-                                    <img src="../assets/images/kouhong.jpg_80x80.jpg" class="itempic J_ItemImg"></a>
+                                    <img  data-bind="attr:{src:goodsInfo.goodsImg}" class="itempic J_ItemImg"></a>
                             </div>
                             <div class="item-info">
                                 <div class="item-basic-info">
                                     <a href="#" target="_blank" title="美康粉黛醉美唇膏 持久保湿滋润防水不掉色"
-                                       class="item-title J_MakePoint" data-point="tbcart.8.11">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</a>
+                                       class="item-title J_MakePoint" data-point="tbcart.8.11" data-bind="text:goodsInfo.goodsName"></a>
                                 </div>
                             </div>
                         </li>
@@ -103,10 +103,10 @@
                             <div class="item-price price-promo-promo">
                                 <div class="price-content">
                                     <div class="price-line">
-                                        <em class="price-original">78.00</em>
+                                        <em data-bind="text:goodsInfo.marketPrice" class="price-original"></em>
                                     </div>
                                     <div class="price-line">
-                                        <em class="J_Price price-now" tabindex="0">39.00</em>
+                                        <em data-bind="text:goodsInfo.shopPrice" class="J_Price price-now" tabindex="0"></em>
                                     </div>
                                 </div>
                             </div>
@@ -116,7 +116,7 @@
                                 <div class="item-amount ">
                                     <div class="sl">
                                         <input class="min am-btn" name="" type="button" value="-"/>
-                                        <input class="text_box" name="" type="text" value="3" style="width:30px;"/>
+                                        <input class="text_box" data-bind="value:cartItems.goodsNum" style="width:30px;"/>
                                         <input class="add am-btn" name="" type="button" value="+"/>
                                     </div>
                                 </div>
@@ -124,7 +124,7 @@
                         </li>
                         <li class="td td-sum">
                             <div class="td-inner">
-                                <em tabindex="0" class="J_ItemSum number">117.00</em>
+                                <em tabindex="0" class="J_ItemSum number" data-bind="text:cartItems.sumMoney"></em>
                             </div>
                         </li>
                         <li class="td td-op">
@@ -158,7 +158,7 @@
         <div class="float-bar-right">
             <div class="amount-sum">
                 <span class="txt">已选商品</span>
-                <em id="J_SelectedItemsCount">0</em><span class="txt">件</span>
+                <em id="J_SelectedItemsCount" data-bind="text:totalGoodsNum"></em><span class="txt">件</span>
                 <div class="arrow-box">
                     <span class="selected-items-arrow"></span>
                     <span class="arrow"></span>
@@ -166,7 +166,7 @@
             </div>
             <div class="price-sum">
                 <span class="txt">合计:</span>
-                <strong class="price">¥<em id="J_Total">0.00</em></strong>
+                <strong class="price">¥<em id="J_Total" data-bind="text:totalMoney"></em></strong>
             </div>
             <div class="btn-area">
                 <a href="pay.html" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">

@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service("cartBiz")
 public class CartBiz {
     @Autowired
@@ -40,8 +43,21 @@ public class CartBiz {
         return cartItemsMapper.insert(cartItems);
     }
 
-    public DTOCartInfo getCartInfo(Integer userId) {
-        DTOCartInfo dtoCartInfo = new DTOCartInfo();
-        return dtoCartInfo;
+    public List<DTOCartInfo> getCartInfo(Integer userId) {
+        List<DTOCartInfo> dtoCartInfoList = new ArrayList<DTOCartInfo>();
+        Cart cart = new Cart();
+        cart.setUserId(userId);
+        Cart cartInfo = cartMapper.selectOne(cart);
+        CartItems cartItems = new CartItems();
+        cartItems.setCartId(cartInfo.getId());
+        List<CartItems> itemsList = cartItemsMapper.select(cartItems);
+        for(CartItems item:itemsList){
+            DTOCartInfo dtoCartInfo = new DTOCartInfo();
+            Goods goodsInfo = goodsMapper.selectByPrimaryKey((long)item.getGoodsId());
+            dtoCartInfo.setGoodsInfo(goodsInfo);
+            dtoCartInfo.setCartItems(item);
+            dtoCartInfoList.add(dtoCartInfo);
+        }
+        return dtoCartInfoList;
     }
 }
