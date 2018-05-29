@@ -17,7 +17,7 @@ require.config({
 })
 
 
-require(['jquery', 'knockout', 'quick_links', 'AmazeUI','jquery.imagezoom','jquery.flexslider','list','constants','jquery-ui'],function ($,ko) {
+require(['jquery', 'knockout', 'quick_links', 'AmazeUI','list','constants','jquery-ui'],function ($,ko) {
 
     var viewModel = {
         selectIndex:1,
