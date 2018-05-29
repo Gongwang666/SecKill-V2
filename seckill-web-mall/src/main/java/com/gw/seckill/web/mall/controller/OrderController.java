@@ -12,4 +12,11 @@ public class OrderController {
         mo.setViewName("/pages/order");
         return mo;
     }
+    @RequestMapping("/addToOrder")
+    public ModelAndView addToOrder(){
+        ModelAndView mo = new ModelAndView();
+
+        mo.setViewName("/pages/pay");
+        return mo;
+    }
 }

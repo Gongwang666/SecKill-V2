@@ -7,11 +7,11 @@ require.config({
         "constants":["constants"],
         "text":["https://cdn.bootcss.com/require-text/2.0.12/text.min"],
         "css":["https://cdn.bootcss.com/require-css/0.1.10/css"],
+        "address":["address"]
     }
 })
 
-
-require(['jquery', 'knockout', 'AmazeUI','constants'],function ($,ko) {
+require(['jquery', 'knockout', 'AmazeUI','constants','address'],function ($,ko) {
     var viewModel = {
         userInfo:ko.observable(),
         register:function () {

@@ -101,6 +101,9 @@ require(['jquery', 'knockout', 'AmazeUI','constants'],function ($,ko) {
                     viewModel.cartInfo(result);
                     viewModel.getTotalMoney();
                 },'json');
+            },
+            addToOrder:function () {
+                $(window).attr("location",URLS.ADD_TO_ORDER);
             }
         }
     };

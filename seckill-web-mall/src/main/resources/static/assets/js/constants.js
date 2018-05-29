@@ -15,5 +15,6 @@ var URLS = {
     CART_PAGE:baseURL+'/cart',
     ADD_GOODS_TO_CART:baseURL+'/addGoodsToCart',
     QUERY_CART_INFO:baseURL+'/getCartInfo',
-    DELETE_CART_ITEM:baseURL+'/deleteCatItem'
+    DELETE_CART_ITEM:baseURL+'/deleteCatItem',
+    ADD_TO_ORDER:baseURL+'/addToOrder'
 };
