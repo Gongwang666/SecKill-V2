@@ -23,4 +23,9 @@ public class CartFacadeImpl implements CartFacade {
     public List<DTOCartInfo> getCartInfo(Integer userId) {
         return cartBiz.getCartInfo(userId);
     }
+
+    @Override
+    public void deleteCatItem(Long id) {
+        cartBiz.deleteCatItem(id);
+    }
 }

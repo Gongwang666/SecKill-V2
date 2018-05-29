@@ -94,6 +94,14 @@ require(['jquery', 'knockout', 'AmazeUI','constants'],function ($,ko) {
             }
             viewModel.totalMoney(totalMoney);
             viewModel.totalGoodsNum(totalGoodsNum);
+        },
+        event:{
+            deleteCatItem:function (id) {
+                $.post(URLS.DELETE_CART_ITEM,{id:id},function (result) {
+                    viewModel.cartInfo(result);
+                    viewModel.getTotalMoney();
+                },'json');
+            }
         }
     };
 

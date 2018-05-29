@@ -5,19 +5,16 @@ require.config({
         "knockout": ["https://cdn.bootcss.com/knockout/3.4.2/knockout-min"],
         "quick_links": "quick_links",
         "AmazeUI": ["https://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min", "amazeui.min"],
-        "jquery.imagezoom":["jquery.imagezoom.min"],
-        "jquery.flexslider":["jquery.flexslider"],
         "list":["list"],
         "magnifier":["amazeui.magnifier.min"],
         "constants":["constants"],
         "text":["https://cdn.bootcss.com/require-text/2.0.12/text.min"],
         "css":["https://cdn.bootcss.com/require-css/0.1.10/css"],
-        "jquery-ui":["https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min"]
     }
 })
 
 
-require(['jquery', 'knockout', 'quick_links', 'AmazeUI','list','constants','jquery-ui'],function ($,ko) {
+require(['jquery', 'knockout', 'quick_links', 'AmazeUI','list','constants'],function ($,ko) {
 
     var viewModel = {
         selectIndex:1,

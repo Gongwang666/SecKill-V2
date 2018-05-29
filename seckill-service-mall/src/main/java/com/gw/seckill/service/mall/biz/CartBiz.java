@@ -60,4 +60,8 @@ public class CartBiz {
         }
         return dtoCartInfoList;
     }
+
+    public void deleteCatItem(Long id) {
+        cartItemsMapper.deleteByPrimaryKey(id);
+    }
 }

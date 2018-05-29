@@ -8,4 +8,6 @@ import java.util.List;
 public interface CartFacade {
     int addGoodsToCart(Long userId,CartItems cartItems);
     List<DTOCartInfo> getCartInfo(Integer userId);
+
+    void deleteCatItem(Long id);
 }

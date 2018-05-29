@@ -131,7 +131,7 @@
                             <div class="td-inner">
                                 <a title="移入收藏夹" class="btn-fav" href="#">
                                     移入收藏夹</a>
-                                <a href="javascript:;" data-point-url="#" class="delete">
+                                <a href="javascript:;" data-point-url="#" data-bind="click:$parent.event.deleteCatItem.bind($data,cartItems.id)" class="delete">
                                     删除</a>
                             </div>
                         </li>
