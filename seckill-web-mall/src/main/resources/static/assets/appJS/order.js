@@ -14,6 +14,7 @@ require.config({
 require(['jquery', 'knockout', 'AmazeUI','constants'],function ($,ko) {
     var viewModel = {
         userInfo:ko.observable(),
+        unPayOrders:ko.observableArray(),
         register:function () {
             //注册头部导航条组件
             ko.components.register('head-nav-bar', {
@@ -27,6 +28,7 @@ require(['jquery', 'knockout', 'AmazeUI','constants'],function ($,ko) {
         pageInit:function () {
             viewModel.register();
             viewModel.getUserInfo();
+            viewModel.getUnPayOrders();
         },
         getUserInfo:function(){
             $.ajax({
@@ -50,6 +52,11 @@ require(['jquery', 'knockout', 'AmazeUI','constants'],function ($,ko) {
                 }
             });
         },
+        getUnPayOrders:function () {
+            $.post(URLS.GET_UNPAY_ORDERS,{},function (result) {
+                viewModel.unPayOrders(result);
+            },'json');
+        }
     };
 
     viewModel.pageInit();

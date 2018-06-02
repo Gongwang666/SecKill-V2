@@ -1,8 +1,12 @@
 require.config({
     baseUrl: 'assets/js/',
+    shim: {
+        'jquery.session': ['jquery']
+    },
     paths: {
         "jquery": ["https://cdn.bootcss.com/jquery/3.3.1/jquery.min", "jquery.min"],
         "knockout": ["https://cdn.bootcss.com/knockout/3.4.2/knockout-min"],
+        "jquery.session":"jquery.session",
         "quick_links": "quick_links",
         "AmazeUI": ["https://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min", "amazeui.min"],
         "list":["list"],
@@ -14,7 +18,7 @@ require.config({
 })
 
 
-require(['jquery', 'knockout', 'quick_links', 'AmazeUI','list','constants'],function ($,ko) {
+require(['jquery', 'knockout', 'jquery.session','quick_links', 'AmazeUI','list','constants'],function ($,ko) {
 
     var viewModel = {
         selectIndex:1,
@@ -28,6 +32,7 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','list','constants'],func
         specItems:ko.observableArray(),
         goodsDetailImgs:ko.observableArray(),
         userInfo:ko.observable(),
+        orderId:ko.observable(),
         render:{
             isSelect:function (element, index, data) {
                 if(viewModel.selectIndex == 1){
@@ -140,6 +145,25 @@ require(['jquery', 'knockout', 'quick_links', 'AmazeUI','list','constants'],func
 
                 $.post(URLS.ADD_GOODS_TO_CART,postData,function () {
                     alert("添加成功!");
+                },'json');
+            },
+            buyGoods:function () {
+                if(typeof viewModel.userInfo() =='undefined'){
+                    $(window).attr("location",URLS.LOGIN_PAGE);
+                    return ;
+                }
+                var goodsNum = $('#text_box').val();
+                var postData = {
+                    goodsId:viewModel.goodsId(),
+                    goodsNum:goodsNum,
+                    specId:''
+                };
+                $.post(URLS.ADD_TO_ORDER,postData,function (result) {
+                    //alert("添加成功!");
+                    viewModel.orderId(result.data);
+                    $.session.set('orderId',result.data);
+                    //alert($.session.get('orderId'));
+                    $(window).attr("location",URLS.TO_PAY_PAGE);
                 },'json');
             }
         }

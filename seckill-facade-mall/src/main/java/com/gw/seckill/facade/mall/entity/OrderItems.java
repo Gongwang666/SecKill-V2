@@ -15,10 +15,6 @@ public class OrderItems extends BaseEntity implements Serializable {
     private Integer goodsNum;
     @Column(name = "SUM_MONEY")
     private Double sumMoney;
-    @Column(name = "DATE")
-    private Date orderTime;
-    @Column(name = "SIGN")
-    private Integer sign;
     @Column(name = "ORDER_ID")
     private Long orderId;
 
@@ -44,22 +40,6 @@ public class OrderItems extends BaseEntity implements Serializable {
 
     public void setSumMoney(Double sumMoney) {
         this.sumMoney = sumMoney;
-    }
-
-    public Date getOrderTime() {
-        return orderTime;
-    }
-
-    public void setOrderTime(Date orderTime) {
-        this.orderTime = orderTime;
-    }
-
-    public Integer getSign() {
-        return sign;
-    }
-
-    public void setSign(Integer sign) {
-        this.sign = sign;
     }
 
     public Long getOrderId() {
