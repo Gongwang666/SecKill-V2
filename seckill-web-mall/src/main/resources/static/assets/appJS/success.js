@@ -18,10 +18,6 @@ require.config({
 require(['jquery', 'knockout','jquery.session', 'AmazeUI','constants','address'],function ($,ko) {
     var viewModel = {
         userInfo:ko.observable(),
-        orderId:ko.observable(),
-        orderInfo:ko.observable(),
-        orderTotalMoney:ko.observable(),
-        orderItemList:ko.observableArray(),
         register:function () {
             //注册头部导航条组件
             ko.components.register('head-nav-bar', {
@@ -35,8 +31,6 @@ require(['jquery', 'knockout','jquery.session', 'AmazeUI','constants','address']
         pageInit:function () {
             viewModel.register();
             viewModel.getUserInfo();
-            viewModel.orderId($.session.get("orderId"));
-            viewModel.getOrderInfo();
         },
         getUserInfo:function(){
             $.ajax({
@@ -60,22 +54,6 @@ require(['jquery', 'knockout','jquery.session', 'AmazeUI','constants','address']
                 }
             });
         },
-        getOrderInfo:function () {
-            var orderId = $.session.get("orderId");
-            $.post(URLS.GET_ORDERINFO_BY_ID,{id:orderId},function (result) {
-                viewModel.orderInfo(result['order']);
-                viewModel.orderTotalMoney(result['order'].totalMoney);
-                viewModel.orderItemList(result.dtoOrderItemsList);
-            },'json');
-        },
-        event:{
-            submitOrder:function () {
-                var orderId = $.session.get("orderId");
-                $.post(URLS.PAY_ORDER,{id:orderId},function (result) {
-                    $(window).attr("location",URLS.PAY_SUCCESS_PAGE);
-                },'json');
-            }
-        }
     };
 
     viewModel.pageInit();

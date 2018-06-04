@@ -46,4 +46,28 @@ public class OrderController {
         List<DTOOrder> orderInfo = orderFacade.getUnPayOrders(user.getId());
         return orderInfo;
     }
+    @RequestMapping("/getAllOrders")
+    public List<DTOOrder> getAllOrders(){
+        User user = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
+        List<DTOOrder> orderInfo = orderFacade.getAllOrders(user.getId());
+        return orderInfo;
+    }
+    @RequestMapping("/getOrderInfoById")
+    public DTOOrder getOrderInfoById(Long id){
+        User user = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
+        DTOOrder orderInfo = orderFacade.getOrderInfoById(user.getId(),id);
+        return orderInfo;
+    }
+    @RequestMapping("/payOrder")
+    public Result payOrder(Long id){
+        Result result = new Result();
+        orderFacade.payOrder(id);
+        return result;
+    }
+    @RequestMapping("/paySuccessPage")
+    public ModelAndView paySuccessPage(){
+        ModelAndView mo = new ModelAndView();
+        mo.setViewName("/pages/success");
+        return mo;
+    }
 }

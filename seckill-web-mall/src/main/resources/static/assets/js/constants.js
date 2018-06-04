@@ -18,5 +18,9 @@ var URLS = {
     DELETE_CART_ITEM:baseURL+'/deleteCatItem',
     ADD_TO_ORDER:baseURL+'/addToOrder',
     TO_PAY_PAGE:baseURL+'/toPayPage',
-    GET_UNPAY_ORDERS:baseURL+'/getUnPayOrders'
+    GET_UNPAY_ORDERS:baseURL+'/getUnPayOrders',
+    GET_ALL_ORDERS:baseURL+'/getAllOrders',
+    GET_ORDERINFO_BY_ID:baseURL+'/getOrderInfoById',
+    PAY_ORDER:baseURL+'/payOrder',
+    PAY_SUCCESS_PAGE:baseURL+'/paySuccessPage'
 };

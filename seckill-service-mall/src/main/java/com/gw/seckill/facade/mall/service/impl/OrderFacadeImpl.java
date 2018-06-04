@@ -23,4 +23,19 @@ public class OrderFacadeImpl implements OrderFacade {
     public List<DTOOrder> getUnPayOrders(Long userId) {
         return orderBiz.getUnPayOrders(userId);
     }
+
+    @Override
+    public List<DTOOrder> getAllOrders(Long id) {
+        return orderBiz.getAllOrders(id);
+    }
+
+    @Override
+    public DTOOrder getOrderInfoById(Long userId, Long orderId) {
+        return orderBiz.getOrderInfoById(userId,orderId);
+    }
+
+    @Override
+    public void payOrder(Long id) {
+        orderBiz.payOrder(id);
+    }
 }

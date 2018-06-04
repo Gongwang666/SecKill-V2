@@ -9,4 +9,10 @@ public interface OrderFacade {
     Integer addToOrder(DTOOrderInfo orderInfo,Integer userId);
 
     List<DTOOrder> getUnPayOrders(Long userId);
+
+    List<DTOOrder> getAllOrders(Long id);
+
+    DTOOrder getOrderInfoById(Long userId, Long orderId);
+
+    void payOrder(Long id);
 }

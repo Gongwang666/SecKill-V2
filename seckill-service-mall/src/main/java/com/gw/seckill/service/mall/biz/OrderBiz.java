@@ -87,4 +87,64 @@ public class OrderBiz {
         }
         return dtoOrderList;
     }
+
+    public List<DTOOrder> getAllOrders(Long id) {
+        Order selectOrder = new Order();
+        selectOrder.setUserId(id.intValue());
+        List<Order> allOrders = orderMapper.select(selectOrder);
+        if(allOrders==null&&allOrders.size()<=0){
+            return null;
+        }
+        List<DTOOrder> dtoOrderList = new ArrayList<DTOOrder>();
+        for(Order or:allOrders){
+            DTOOrder dtoOrder = new DTOOrder();
+            OrderItems odi = new OrderItems();
+            odi.setOrderId(or.getId());
+            List<OrderItems> orderItemsList = orderItemsMapper.select(odi);
+            List<DTOOrderItems> dtoOrderItemsList = new ArrayList<DTOOrderItems>();
+            for(OrderItems oi:orderItemsList){
+                DTOOrderItems dtoOrderItems = new DTOOrderItems();
+                Goods goods = goodsMapper.selectByPrimaryKey(oi.getGoodsId());
+                dtoOrderItems.setGoods(goods);
+                dtoOrderItems.setOrderItems(oi);
+                dtoOrderItemsList.add(dtoOrderItems);
+            }
+            dtoOrder.setOrder(or);
+            dtoOrder.setDtoOrderItemsList(dtoOrderItemsList);
+            dtoOrderList.add(dtoOrder);
+        }
+        return dtoOrderList;
+    }
+
+    public DTOOrder getOrderInfoById(Long userId, Long orderId) {
+        Order selectOrder = new Order();
+        selectOrder.setUserId(userId.intValue());
+        selectOrder.setId(orderId);
+        Order orderInfo = orderMapper.selectOne(selectOrder);
+        if(orderInfo==null){
+            return null;
+        }
+        OrderItems orderItems = new OrderItems();
+        orderItems.setOrderId(orderId);
+        List<OrderItems> orderItemsList = orderItemsMapper.select(orderItems);
+        List<DTOOrderItems> dtoOrderItemsList = new ArrayList<DTOOrderItems>();
+        DTOOrder dtoOrder = new DTOOrder();
+        for(OrderItems oi:orderItemsList){
+            DTOOrderItems dtoOrderItems = new DTOOrderItems();
+            Goods goods = goodsMapper.selectByPrimaryKey(oi.getGoodsId());
+            dtoOrderItems.setGoods(goods);
+            dtoOrderItems.setOrderItems(oi);
+            dtoOrderItemsList.add(dtoOrderItems);
+        }
+        dtoOrder.setOrder(orderInfo);
+        dtoOrder.setDtoOrderItemsList(dtoOrderItemsList);
+        return dtoOrder;
+    }
+
+    public void payOrder(Long id) {
+        Order order = new Order();
+        order.setId(id);
+        order.setSign(1);
+        orderMapper.updateByPrimaryKeySelective(order);
+    }
 }

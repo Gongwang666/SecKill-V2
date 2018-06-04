@@ -1,8 +1,12 @@
 require.config({
     baseUrl: 'assets/js/',
+    shim: {
+        'jquery.session': ['jquery']
+    },
     paths: {
         "jquery": ["https://cdn.bootcss.com/jquery/3.3.1/jquery.min", "jquery.min"],
         "knockout": ["https://cdn.bootcss.com/knockout/3.4.2/knockout-min"],
+        "jquery.session":"jquery.session",
         "AmazeUI": ["https://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min", "amazeui.min"],
         "constants":["constants"],
         "text":["https://cdn.bootcss.com/require-text/2.0.12/text.min"],
@@ -11,10 +15,11 @@ require.config({
 })
 
 
-require(['jquery', 'knockout', 'AmazeUI','constants'],function ($,ko) {
+require(['jquery', 'knockout', 'jquery.session','AmazeUI','constants'],function ($,ko) {
     var viewModel = {
         userInfo:ko.observable(),
         unPayOrders:ko.observableArray(),
+        allOrders:ko.observableArray(),
         register:function () {
             //注册头部导航条组件
             ko.components.register('head-nav-bar', {
@@ -29,6 +34,7 @@ require(['jquery', 'knockout', 'AmazeUI','constants'],function ($,ko) {
             viewModel.register();
             viewModel.getUserInfo();
             viewModel.getUnPayOrders();
+            viewModel.getAllOrders();
         },
         getUserInfo:function(){
             $.ajax({
@@ -56,6 +62,46 @@ require(['jquery', 'knockout', 'AmazeUI','constants'],function ($,ko) {
             $.post(URLS.GET_UNPAY_ORDERS,{},function (result) {
                 viewModel.unPayOrders(result);
             },'json');
+        },
+        getAllOrders:function () {
+            $.post(URLS.GET_ALL_ORDERS,{},function (result) {
+                viewModel.allOrders(result);
+            },'json');
+        },
+        event:{
+            isShowSuccess:function (sign) {
+                if(sign==3){
+                    return true;
+                }else{
+                    return false;
+                }
+            },
+            isShowPay:function (sign) {
+                if(sign==1){
+                    return true;
+                }else{
+                    return false;
+                }
+            },
+            isShowSend:function (sign) {
+                if(sign==2){
+                    return true;
+                }else{
+                    return false;
+                }
+            },
+            isShowFail:function (sign) {
+                if(sign==4){
+                    return true;
+                }else{
+                    return false;
+                }
+            },
+            payMoney:function (id) {
+                $.session.clear();
+                $.session.set('orderId',id);
+                $(window).attr("location",URLS.TO_PAY_PAGE);
+            }
         }
     };
 
